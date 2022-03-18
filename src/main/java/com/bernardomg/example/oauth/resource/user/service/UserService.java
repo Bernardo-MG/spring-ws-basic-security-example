@@ -5,6 +5,6 @@ import com.bernardomg.example.oauth.resource.user.model.User;
 
 public interface UserService {
 
-    public Iterable<User> getUsers();
+    public Iterable<? extends User> getUsers();
 
 }

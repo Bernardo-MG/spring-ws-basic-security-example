@@ -24,21 +24,49 @@
 
 package com.bernardomg.example.oauth.resource.user.model;
 
-import lombok.Data;
-
-@Data
-public class DefaultUser implements User {
-
-    /**
-     * User name.
-     */
-    private String username;
+/**
+ * User role. Groups a set of permissions.
+ * 
+ * @author Bernardo Mart&iacute;nez Garrido
+ *
+ */
+public interface Role {
 
     /**
-     * Default constructor.
+     * Returns the user id.
+     * 
+     * @return the user id
      */
-    public DefaultUser() {
-        super();
-    }
+    public Long getId();
+
+    /**
+     * Returns the role name.
+     * 
+     * @return the role name
+     */
+    public String getName();
+
+    /**
+     * Returns the user privileges.
+     * 
+     * @return the user privileges
+     */
+    public Iterable<? extends Privilege> getPrivileges();
+
+    /**
+     * Sets the user id.
+     * 
+     * @param identifier
+     *            the new id
+     */
+    public void setId(final Long identifier);
+
+    /**
+     * Sets the role name.
+     * 
+     * @param role
+     *            new name
+     */
+    public void setName(final String role);
 
 }

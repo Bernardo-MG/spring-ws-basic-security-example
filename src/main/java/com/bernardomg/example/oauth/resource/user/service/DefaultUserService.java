@@ -7,22 +7,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.bernardomg.example.oauth.resource.user.model.User;
-import com.bernardomg.example.oauth.resource.user.repository.UserRepository;
+import com.bernardomg.example.oauth.resource.user.repository.PersistentUserRepository;
 
 @Service
 public final class DefaultUserService implements UserService {
 
-    private final UserRepository repository;
+    private final PersistentUserRepository repository;
 
     @Autowired
-    public DefaultUserService(final UserRepository repo) {
+    public DefaultUserService(final PersistentUserRepository repo) {
         super();
 
         repository = Objects.requireNonNull(repo);
     }
 
     @Override
-    public final Iterable<User> getUsers() {
+    public final Iterable<? extends User> getUsers() {
         return repository.findAll();
     }
 

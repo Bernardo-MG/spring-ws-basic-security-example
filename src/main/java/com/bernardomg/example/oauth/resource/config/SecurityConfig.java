@@ -24,64 +24,63 @@
 
 package com.bernardomg.example.oauth.resource.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.Customizer;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationConverter;
-import org.springframework.security.oauth2.server.resource.authentication.JwtGrantedAuthoritiesConverter;
+import org.springframework.security.config.annotation.web.configurers.ExpressionUrlAuthorizationConfigurer;
+import org.springframework.security.config.annotation.web.configurers.FormLoginConfigurer;
+import org.springframework.security.config.annotation.web.configurers.LogoutConfigurer;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
 @Configuration
+@EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+    @Autowired
+    private UserDetailsService userDetailsService;
 
     public SecurityConfig() {
         super();
     }
 
+    @Bean
     @Override
-    protected void configure(final HttpSecurity http) throws Exception {
-        http.authorizeRequests(authz -> authz
-            // Sets authority required for GET requests
-            .antMatchers(HttpMethod.GET, "/rest/**")
-            .hasAuthority("read")
-            // Sets authority required for POST requests
-            .antMatchers(HttpMethod.POST, "/rest")
-            .hasAuthority("write")
-            // Actuators are always available
-            .antMatchers("/actuator/**")
-            .permitAll()
-            // By default all requests require authentication
-            .anyRequest()
-            .authenticated())
-            // OAUTH 2 with JWT
-            .oauth2ResourceServer(oauth2 -> oauth2.jwt()
-                .jwtAuthenticationConverter(scopeAuthenticationConverter()))
-            // Stateless session
-            .sessionManagement()
-            .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+    public AuthenticationManager authenticationManager() throws Exception {
+        return super.authenticationManager();
     }
 
-    /**
-     * Automatically handles the scope prefix. So the application does not
-     * require it on the authority name.
-     * 
-     * @return authentication provider set up for the scope
-     */
-    private final JwtAuthenticationConverter scopeAuthenticationConverter() {
-        final JwtAuthenticationConverter converter;
-        final JwtGrantedAuthoritiesConverter authoritiesConverter;
+    @Override
+    protected void configure(final AuthenticationManagerBuilder auth)
+            throws Exception {
+        auth.userDetailsService(userDetailsService);
+    }
 
-        converter = new JwtAuthenticationConverter();
-        authoritiesConverter = new JwtGrantedAuthoritiesConverter();
-        // Remove scope_ Prefix of
-        authoritiesConverter.setAuthorityPrefix("");
-        // Obtain permission from the field in JWT claim, and the mode is
-        // obtained from the scope or SCP field
-        authoritiesConverter.setAuthoritiesClaimName("scope");
-        converter.setJwtGrantedAuthoritiesConverter(authoritiesConverter);
+    @Override
+    protected void configure(final HttpSecurity http) throws Exception {
+        final Customizer<ExpressionUrlAuthorizationConfigurer<HttpSecurity>.ExpressionInterceptUrlRegistry> authorizeRequestsCustomizer;
+        final Customizer<FormLoginConfigurer<HttpSecurity>> formLoginCustomizer;
+        final Customizer<LogoutConfigurer<HttpSecurity>> logoutCustomizer;
 
-        return converter;
+        // Authorization
+        authorizeRequestsCustomizer = c -> c.antMatchers("/actuator/**")
+            .permitAll()
+            .anyRequest()
+            .authenticated();
+        // Login form
+        formLoginCustomizer = c -> c.disable();
+        // Logout
+        logoutCustomizer = c -> c.disable();
+
+        http.authorizeRequests(authorizeRequestsCustomizer)
+            .formLogin(formLoginCustomizer)
+            .logout(logoutCustomizer)
+            .httpBasic();
     }
 
 }
