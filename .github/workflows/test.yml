@@ -13,7 +13,7 @@ jobs:
     uses: Bernardo-MG/github-workflow/.github/workflows/maven_deploy_site.yml@v1
     with:
       branch: develop
-      host: https://docs.bernardomg.com
+      host: docs.bernardomg.com
     secrets:
       url: ${{ secrets.DEPLOY_DOCS_DEVELOP_SITE }}
       username: ${{ secrets.DEPLOY_DOCS_DEVELOP_USER }}
@@ -25,7 +25,7 @@ jobs:
     uses: Bernardo-MG/github-workflow/.github/workflows/maven_deploy_site.yml@v1
     with:
       branch: master
-      host: https://docs.bernardomg.com
+      host: docs.bernardomg.com
     secrets:
       url: ${{ secrets.DEPLOY_DOCS_SITE }}
       username: ${{ secrets.DEPLOY_DOCS_USER }}
