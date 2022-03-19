@@ -11,8 +11,7 @@ Example for basic HTTP Security with Spring.
 ## Features
 
 - [Spring MVC](https://spring.io/)
-- [OAuth2](https://oauth.net/2/)
-- Integrates with [Keycloak](https://www.keycloak.org/)
+- Basic HTTP security
 - Basic Spring Boot security auditing
 
 ## Documentation
@@ -43,11 +42,11 @@ As this is a Spring Boot app it may be run with Maven or through your preferred 
 mvn spring-boot:run
 ```
 
-Once running it will be accessible at [http://localhost:8080/](http://localhost:8080/).
+Once running the web service will be available at [http://localhost:8080/](http://localhost:8080/).
 
 ### Requests with Postman
 
-Import `src/test/resources/Oauth.postman_collection.json` to get queries for all the operations. Including authentication and reading.
+Import `src/test/resources/auth.postman_collection.json` to get queries for all the operations including authentication.
 
 ## Collaborate
 
