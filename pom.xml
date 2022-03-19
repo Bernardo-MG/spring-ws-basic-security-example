@@ -178,12 +178,6 @@
       <!-- ============== PLUGINS VERSIONS ============== -->
       <!-- ============================================== -->
       <plugin.spring.boot.version>${spring.boot.version}</plugin.spring.boot.version>
-      <plugin.deploy.version>3.0.0-M2</plugin.deploy.version>
-      <plugin.site.version>3.11.0</plugin.site.version>
-      <!-- ============================================== -->
-      <!-- ============= EXTENSIONS VERSIONS ============ -->
-      <!-- ============================================== -->
-      <extension.wagon.version>3.5.1</extension.wagon.version>
       <!-- ============================================== -->
       <!-- ================= MAVEN SITE ================= -->
       <!-- ============================================== -->
