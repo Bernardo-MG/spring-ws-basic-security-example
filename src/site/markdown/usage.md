@@ -1,17 +1,13 @@
 # Usage
 
-The project requires an authorization server. The Docker compose file will take care of this, while running the project:
+As this is a Spring Boot app it may be run with Maven or through your preferred IDE.
 
 ```
-docker-compose -f docker/docker-compose.yml up
+mvn spring-boot:run
 ```
 
-The resource server API is located at [http://localhost:8080/rest/entity](http://localhost:8080/rest/entity), accessible to the user test-user/1234.
+Once running the web service will be available at [http://localhost:8080/](http://localhost:8080/).
 
 ## Requests with Postman
 
-Import `src/test/resources/Oauth.postman_collection.json` to get queries for all the operations. Including authentication and reading.
-
-## Authentication Server
-
-A Keycloak server is taking care of the authentication. It includes [an administration panel](http://localhost:8090/), accessible to the user admin/admin. Use it to make any change as needed.
+Import `src/test/resources/auth.postman_collection.json` to get queries for all the operations. Including authentication and reading.
