@@ -6,6 +6,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.bernardomg.example.ws.security.basic.resource.login.model.UserForm;
+
 import lombok.extern.slf4j.Slf4j;
 
 @Service
@@ -25,9 +27,10 @@ public final class DefaultLoginService implements LoginService {
     }
 
     @Override
-    public final Boolean login(final String username, final String password) {
+    public final UserForm login(final String username, final String password) {
         final UserDetails details;
         final Boolean logged;
+        final UserForm user;
 
         log.debug("Trying to log: {}", username);
 
@@ -39,7 +42,22 @@ public final class DefaultLoginService implements LoginService {
             logged = passwordEncoder.matches(password, details.getPassword());
         }
 
-        return logged;
+        if (logged) {
+            user = toUser(details);
+        } else {
+            user = null;
+        }
+
+        return user;
+    }
+
+    private final UserForm toUser(final UserDetails details) {
+        final UserForm user;
+
+        user = new UserForm();
+        user.setUsername(details.getUsername());
+
+        return user;
     }
 
 }

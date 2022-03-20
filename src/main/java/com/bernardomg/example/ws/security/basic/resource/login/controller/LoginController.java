@@ -50,7 +50,7 @@ public class LoginController {
     }
 
     @PostMapping
-    public Boolean login(@RequestBody final UserForm user) {
+    public UserForm login(@RequestBody final UserForm user) {
         return service.login(user.getUsername(), user.getPassword());
     }
 
