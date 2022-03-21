@@ -86,7 +86,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         // Logout
         logoutCustomizer = c -> c.disable();
 
-        http.authorizeRequests(authorizeRequestsCustomizer)
+        http.csrf()
+            .disable()
+            .cors()
+            .and()
+            .authorizeRequests(authorizeRequestsCustomizer)
             .formLogin(formLoginCustomizer)
             .logout(logoutCustomizer)
             .httpBasic();
