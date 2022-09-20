@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "fcde65ef-dfcd-47e2-90dc-b104c23f5e26",
-		"name": "Auth",
+		"_postman_id": "e6b067c9-6fbd-46bd-8aca-0e845fc12252",
+		"name": "Basic auth",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
