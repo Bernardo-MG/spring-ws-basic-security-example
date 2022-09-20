@@ -24,9 +24,6 @@
 
 package com.bernardomg.example.ws.security.basic.auth.login.controller;
 
-import java.util.Objects;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,18 +32,14 @@ import org.springframework.web.bind.annotation.RestController;
 import com.bernardomg.example.ws.security.basic.auth.login.model.UserForm;
 import com.bernardomg.example.ws.security.basic.auth.login.service.LoginService;
 
+import lombok.AllArgsConstructor;
+
 @RestController
 @RequestMapping("/login")
+@AllArgsConstructor
 public class LoginController {
 
     private final LoginService service;
-
-    @Autowired
-    public LoginController(final LoginService serv) {
-        super();
-
-        service = Objects.requireNonNull(serv, "Received a null pointer as service");
-    }
 
     @PostMapping
     public UserForm login(@RequestBody final UserForm user) {

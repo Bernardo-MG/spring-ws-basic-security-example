@@ -8,22 +8,17 @@ import org.springframework.stereotype.Service;
 
 import com.bernardomg.example.ws.security.basic.auth.login.model.UserForm;
 
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Service
 @Slf4j
+@AllArgsConstructor
 public final class DefaultLoginService implements LoginService {
 
     private final PasswordEncoder    passwordEncoder;
 
     private final UserDetailsService service;
-
-    public DefaultLoginService(final UserDetailsService service, final PasswordEncoder passwordEncoder) {
-        super();
-
-        this.service = service;
-        this.passwordEncoder = passwordEncoder;
-    }
 
     @Override
     public final UserForm login(final String username, final String password) {
