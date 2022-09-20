@@ -1,7 +1,7 @@
 /**
  * The MIT License (MIT)
  * <p>
- * Copyright (c) 2017-2020 the original author or authors.
+ * Copyright (c) 2021 the original author or authors.
  * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,38 +22,34 @@
  * SOFTWARE.
  */
 
-package com.bernardomg.example.ws.security.basic.config;
+package com.bernardomg.example.ws.security.basic.mvc.response.model;
 
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
-
-import com.bernardomg.example.ws.security.basic.auth.service.PersistentUserDetailsService;
-import com.bernardomg.example.ws.security.basic.domain.user.repository.PersistentUserRepository;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 /**
- * Authentication configuration.
+ * Response status.
  *
- * @author Bernardo Martínez Garrido
+ * @author Bernardo Mart&iacute;nez Garrido
  *
  */
-@Configuration
-public class AuthenticationConfig {
+public enum ResponseStatus {
 
-    public AuthenticationConfig() {
-        super();
-    }
+    /**
+     * The request failed.
+     */
+    FAILURE,
+    /**
+     * The request was a success.
+     */
+    SUCCESS,
+    /**
+     * The request generated warnings.
+     */
+    WARNING;
 
-    @Bean("passwordEncoder")
-    public PasswordEncoder getPasswordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
-
-    @Bean("userDetailsService")
-    public UserDetailsService getUserDetailsService(final PersistentUserRepository userRepository) {
-        return new PersistentUserDetailsService(userRepository);
+    @JsonValue
+    public final String getValue() {
+        return toString().toLowerCase();
     }
 
 }

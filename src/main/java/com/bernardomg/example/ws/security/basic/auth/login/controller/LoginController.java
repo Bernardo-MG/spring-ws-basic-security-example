@@ -1,7 +1,7 @@
 /**
  * The MIT License (MIT)
  * <p>
- * Copyright (c) 2017-2020 the original author or authors.
+ * Copyright (c) 2021 the original author or authors.
  * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,38 +22,35 @@
  * SOFTWARE.
  */
 
-package com.bernardomg.example.ws.security.basic.config;
+package com.bernardomg.example.ws.security.basic.auth.login.controller;
 
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import java.util.Objects;
 
-import com.bernardomg.example.ws.security.basic.auth.service.PersistentUserDetailsService;
-import com.bernardomg.example.ws.security.basic.domain.user.repository.PersistentUserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-/**
- * Authentication configuration.
- *
- * @author Bernardo Martínez Garrido
- *
- */
-@Configuration
-public class AuthenticationConfig {
+import com.bernardomg.example.ws.security.basic.auth.login.model.UserForm;
+import com.bernardomg.example.ws.security.basic.auth.login.service.LoginService;
 
-    public AuthenticationConfig() {
+@RestController
+@RequestMapping("/login")
+public class LoginController {
+
+    private final LoginService service;
+
+    @Autowired
+    public LoginController(final LoginService serv) {
         super();
+
+        service = Objects.requireNonNull(serv, "Received a null pointer as service");
     }
 
-    @Bean("passwordEncoder")
-    public PasswordEncoder getPasswordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
-
-    @Bean("userDetailsService")
-    public UserDetailsService getUserDetailsService(final PersistentUserRepository userRepository) {
-        return new PersistentUserDetailsService(userRepository);
+    @PostMapping
+    public UserForm login(@RequestBody final UserForm user) {
+        return service.login(user.getUsername(), user.getPassword());
     }
 
 }
