@@ -45,8 +45,7 @@ public class LoginController {
     public LoginController(final LoginService serv) {
         super();
 
-        service = Objects.requireNonNull(serv,
-            "Received a null pointer as service");
+        service = Objects.requireNonNull(serv, "Received a null pointer as service");
     }
 
     @PostMapping

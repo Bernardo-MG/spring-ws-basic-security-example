@@ -53,12 +53,10 @@ public class DefaultExampleEntityService implements ExampleEntityService {
      *            the repository for the entity instances
      */
     @Autowired
-    public DefaultExampleEntityService(
-            final ExampleEntityRepository repository) {
+    public DefaultExampleEntityService(final ExampleEntityRepository repository) {
         super();
 
-        entityRepository = Objects.requireNonNull(repository,
-            "Received a null pointer as repository");
+        entityRepository = Objects.requireNonNull(repository, "Received a null pointer as repository");
     }
 
     @Override

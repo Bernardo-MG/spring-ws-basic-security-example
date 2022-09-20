@@ -58,8 +58,7 @@ public class UserController {
     public UserController(final UserService userService) {
         super();
 
-        service = Objects.requireNonNull(userService,
-            "Received a null pointer as service");
+        service = Objects.requireNonNull(userService, "Received a null pointer as service");
     }
 
     @GetMapping

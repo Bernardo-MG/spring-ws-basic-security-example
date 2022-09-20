@@ -44,21 +44,18 @@ public class AuditEventLogger {
     /**
      * Logger for the event listener.
      */
-    private static final Logger LOGGER = LoggerFactory
-        .getLogger(AuditEventLogger.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(AuditEventLogger.class);
 
     @EventListener
-    public void auditEventHappened(
-            final AuditApplicationEvent auditApplicationEvent) {
-        final AuditEvent auditEvent;
-        final Object details;
+    public void auditEventHappened(final AuditApplicationEvent auditApplicationEvent) {
+        final AuditEvent               auditEvent;
+        final Object                   details;
         final WebAuthenticationDetails webDetails;
-        final Object message;
+        final Object                   message;
 
         auditEvent = auditApplicationEvent.getAuditEvent();
 
-        LOGGER.debug("Audit event {} for {}", auditEvent.getType(),
-            auditEvent.getPrincipal());
+        LOGGER.debug("Audit event {} for {}", auditEvent.getType(), auditEvent.getPrincipal());
 
         message = auditEvent.getData()
             .get("message");
@@ -70,8 +67,7 @@ public class AuditEventLogger {
             .get("details");
         if (details instanceof WebAuthenticationDetails) {
             webDetails = (WebAuthenticationDetails) details;
-            LOGGER.debug("Remote IP address: {}",
-                webDetails.getRemoteAddress());
+            LOGGER.debug("Remote IP address: {}", webDetails.getRemoteAddress());
             LOGGER.debug("Session Id: {}", webDetails.getSessionId());
         }
     }

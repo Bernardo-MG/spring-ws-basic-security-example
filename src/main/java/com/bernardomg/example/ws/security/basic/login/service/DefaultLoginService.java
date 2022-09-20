@@ -14,12 +14,11 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public final class DefaultLoginService implements LoginService {
 
-    private final UserDetailsService service;
-
     private final PasswordEncoder    passwordEncoder;
 
-    public DefaultLoginService(final UserDetailsService service,
-            final PasswordEncoder passwordEncoder) {
+    private final UserDetailsService service;
+
+    public DefaultLoginService(final UserDetailsService service, final PasswordEncoder passwordEncoder) {
         super();
 
         this.service = service;
@@ -29,8 +28,8 @@ public final class DefaultLoginService implements LoginService {
     @Override
     public final UserForm login(final String username, final String password) {
         final UserDetails details;
-        final Boolean logged;
-        final UserForm user;
+        final Boolean     logged;
+        final UserForm    user;
 
         log.debug("Trying to log: {}", username);
 

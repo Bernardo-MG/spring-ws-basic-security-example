@@ -35,7 +35,7 @@ import com.bernardomg.example.ws.security.basic.user.repository.PersistentUserRe
 
 /**
  * Authentication configuration.
- * 
+ *
  * @author Bernardo Martínez Garrido
  *
  */
@@ -52,8 +52,7 @@ public class AuthenticationConfig {
     }
 
     @Bean("userDetailsService")
-    public UserDetailsService getUserDetailsService(
-            final PersistentUserRepository userRepository) {
+    public UserDetailsService getUserDetailsService(final PersistentUserRepository userRepository) {
         return new PersistentUserDetailsService(userRepository);
     }
 

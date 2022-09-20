@@ -33,13 +33,11 @@ import com.bernardomg.example.ws.security.basic.entity.model.PersistentExampleEn
 /**
  * Spring-JPA repository for {@link PersistentExampleEntity}.
  * <p>
- * This is a simple repository just to allow the endpoints querying the entities
- * they are asked for.
+ * This is a simple repository just to allow the endpoints querying the entities they are asked for.
  *
  * @author Bernardo Mart&iacute;nez Garrido
  */
-public interface ExampleEntityRepository
-        extends JpaRepository<PersistentExampleEntity, Integer> {
+public interface ExampleEntityRepository extends JpaRepository<PersistentExampleEntity, Integer> {
 
     /**
      * Returns all entities with a partial match to the name.
@@ -50,7 +48,6 @@ public interface ExampleEntityRepository
      *            pagination to apply
      * @return all entities at least partially matching the name
      */
-    public Page<PersistentExampleEntity> findByNameContaining(final String name,
-            final Pageable page);
+    public Page<PersistentExampleEntity> findByNameContaining(final String name, final Pageable page);
 
 }

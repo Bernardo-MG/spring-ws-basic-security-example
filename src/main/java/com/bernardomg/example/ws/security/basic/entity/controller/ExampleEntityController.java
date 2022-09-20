@@ -58,8 +58,7 @@ public class ExampleEntityController {
     public ExampleEntityController(final ExampleEntityService service) {
         super();
 
-        exampleEntityService = Objects.requireNonNull(service,
-            "Received a null pointer as service");
+        exampleEntityService = Objects.requireNonNull(service, "Received a null pointer as service");
     }
 
     /**
