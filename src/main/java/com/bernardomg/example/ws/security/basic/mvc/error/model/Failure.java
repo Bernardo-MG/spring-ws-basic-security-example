@@ -1,7 +1,7 @@
 /**
  * The MIT License (MIT)
  * <p>
- * Copyright (c) 2021 the original author or authors.
+ * Copyright (c) 2022 the original author or authors.
  * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,44 +22,30 @@
  * SOFTWARE.
  */
 
-package com.bernardomg.example.ws.security.basic.mvc.response.model;
-
-import java.util.Arrays;
-import java.util.Collection;
-
-import com.bernardomg.example.ws.security.basic.mvc.error.model.Failure;
+package com.bernardomg.example.ws.security.basic.mvc.error.model;
 
 /**
- * Response to the frontend.
+ * Error object. Containing a message to tell which error ocurred.
  *
  * @author Bernardo Mart&iacute;nez Garrido
  *
- * @param <T>
- *            response content type
  */
-public interface Response<T> {
+public interface Failure {
 
-    public static <T> Response<T> empty() {
-        return new ImmutableResponse<>();
-    }
+    public static Failure of(final String code) {
+        final DtoFailure error;
 
-    public static ErrorResponse error(final Collection<? extends Failure> errors) {
-        return new ImmutableErrorResponse<>(errors);
-    }
+        error = new DtoFailure();
+        error.setMessage(code);
 
-    public static ErrorResponse error(final Failure error) {
-        return new ImmutableErrorResponse<>(Arrays.asList(error));
-    }
-
-    public static <T> Response<T> of(final T content) {
-        return new ImmutableResponse<>(content);
+        return error;
     }
 
     /**
-     * Returns the response content.
+     * Returns the error message.
      *
-     * @return the response content
+     * @return the error message.
      */
-    public T getContent();
+    public String getMessage();
 
 }

@@ -1,7 +1,7 @@
 /**
  * The MIT License (MIT)
  * <p>
- * Copyright (c) 2021 the original author or authors.
+ * Copyright (c) 2022 the original author or authors.
  * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,34 +22,25 @@
  * SOFTWARE.
  */
 
-package com.bernardomg.example.ws.security.basic.mvc.response.model;
+package com.bernardomg.example.ws.security.basic.mvc.error.model;
 
-import com.fasterxml.jackson.annotation.JsonValue;
+import lombok.Data;
 
 /**
- * Response status.
+ * DTO implementation of {@code FieldValidationError}.
  *
  * @author Bernardo Mart&iacute;nez Garrido
  *
  */
-public enum ResponseStatus {
+@Data
+public final class DtoFieldFailure implements FieldFailure {
 
-    /**
-     * The request failed.
-     */
-    FAILURE,
-    /**
-     * The request was a success.
-     */
-    SUCCESS,
-    /**
-     * The request generated warnings.
-     */
-    WARNING;
+    private String field;
 
-    @JsonValue
-    public final String getValue() {
-        return toString().toLowerCase();
-    }
+    private String message;
+
+    private String object;
+
+    private Object value;
 
 }

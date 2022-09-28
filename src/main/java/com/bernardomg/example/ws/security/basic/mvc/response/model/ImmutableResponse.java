@@ -1,7 +1,7 @@
 /**
  * The MIT License (MIT)
  * <p>
- * Copyright (c) 2021 the original author or authors.
+ * Copyright (c) 2022 the original author or authors.
  * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -28,7 +28,7 @@ import lombok.Data;
 import lombok.NonNull;
 
 /**
- * Default implementation of the response.
+ * Immutable implementation of the response.
  *
  * @author Bernardo Mart&iacute;nez Garrido
  *
@@ -36,25 +36,20 @@ import lombok.NonNull;
  *            response content type
  */
 @Data
-public class DefaultResponse<T> implements Response<T> {
+public class ImmutableResponse<T> implements Response<T> {
 
     /**
      * Response content.
      */
-    @NonNull
-    private T              content;
-
-    /**
-     * Response status.
-     */
-    @NonNull
-    private ResponseStatus status = ResponseStatus.SUCCESS;
+    private final T content;
 
     /**
      * Default constructor.
      */
-    public DefaultResponse() {
+    public ImmutableResponse() {
         super();
+
+        content = null;
     }
 
     /**
@@ -63,25 +58,10 @@ public class DefaultResponse<T> implements Response<T> {
      * @param cont
      *            content
      */
-    public DefaultResponse(@NonNull final T cont) {
+    public ImmutableResponse(@NonNull final T cont) {
         super();
 
         content = cont;
-    }
-
-    /**
-     * Constructs a response with the specified content and status.
-     *
-     * @param cont
-     *            content
-     * @param stat
-     *            status
-     */
-    public DefaultResponse(@NonNull final T cont, @NonNull final ResponseStatus stat) {
-        super();
-
-        content = cont;
-        status = stat;
     }
 
 }
