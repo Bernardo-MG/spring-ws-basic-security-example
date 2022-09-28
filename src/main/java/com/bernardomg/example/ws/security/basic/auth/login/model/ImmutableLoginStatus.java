@@ -40,10 +40,11 @@ public final class ImmutableLoginStatus implements LoginStatus {
 
     private final String  username;
 
-    public ImmutableLoginStatus(@NonNull final String username, @NonNull final Boolean logged) {
+    public ImmutableLoginStatus(@NonNull final String usnm, @NonNull final Boolean lgd) {
         super();
-        this.username = username;
-        this.logged = logged;
+
+        username = usnm;
+        logged = lgd;
     }
 
 }
