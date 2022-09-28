@@ -22,29 +22,27 @@
  * SOFTWARE.
  */
 
-package com.bernardomg.example.ws.security.basic.auth.login.controller;
+package com.bernardomg.example.ws.security.basic.auth.login.model;
 
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import lombok.Data;
 
-import com.bernardomg.example.ws.security.basic.auth.login.model.LoginStatus;
-import com.bernardomg.example.ws.security.basic.auth.login.model.UserForm;
-import com.bernardomg.example.ws.security.basic.auth.login.service.LoginService;
+/**
+ * Immutable implementation of {@link LoginStatus}.
+ *
+ * @author Bernardo Mart&iacute;nez Garrido
+ *
+ */
+@Data
+public final class ImmutableLoginStatus implements LoginStatus {
 
-import lombok.AllArgsConstructor;
+    private final Boolean logged;
 
-@RestController
-@RequestMapping("/login")
-@AllArgsConstructor
-public class LoginController {
+    private final String  username;
 
-    private final LoginService service;
-
-    @PostMapping
-    public LoginStatus login(@RequestBody final UserForm user) {
-        return service.login(user.getUsername(), user.getPassword());
+    public ImmutableLoginStatus(final String username, final Boolean logged) {
+        super();
+        this.username = username;
+        this.logged = logged;
     }
 
 }

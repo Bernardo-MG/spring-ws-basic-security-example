@@ -22,29 +22,28 @@
  * SOFTWARE.
  */
 
-package com.bernardomg.example.ws.security.basic.auth.login.controller;
+package com.bernardomg.example.ws.security.basic.auth.login.model;
 
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+/**
+ * Status after a login attempt.
+ *
+ * @author Bernardo Mart&iacute;nez Garrido
+ *
+ */
+public interface LoginStatus {
 
-import com.bernardomg.example.ws.security.basic.auth.login.model.LoginStatus;
-import com.bernardomg.example.ws.security.basic.auth.login.model.UserForm;
-import com.bernardomg.example.ws.security.basic.auth.login.service.LoginService;
+    /**
+     * Returns if the logging attempt was successful.
+     *
+     * @return {@code true} if the login was successful, {@code false} otherwise
+     */
+    public Boolean getLogged();
 
-import lombok.AllArgsConstructor;
-
-@RestController
-@RequestMapping("/login")
-@AllArgsConstructor
-public class LoginController {
-
-    private final LoginService service;
-
-    @PostMapping
-    public LoginStatus login(@RequestBody final UserForm user) {
-        return service.login(user.getUsername(), user.getPassword());
-    }
+    /**
+     * Returns the username of the user who attempted login.
+     *
+     * @return the username
+     */
+    public String getUsername();
 
 }

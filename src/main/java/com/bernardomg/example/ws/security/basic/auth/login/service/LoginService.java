@@ -1,10 +1,10 @@
 
 package com.bernardomg.example.ws.security.basic.auth.login.service;
 
-import com.bernardomg.example.ws.security.basic.auth.login.model.UserForm;
+import com.bernardomg.example.ws.security.basic.auth.login.model.LoginStatus;
 
 public interface LoginService {
 
-    public UserForm login(final String username, final String password);
+    public LoginStatus login(final String username, final String password);
 
 }
