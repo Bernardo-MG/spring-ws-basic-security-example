@@ -25,6 +25,7 @@
 package com.bernardomg.example.ws.security.basic.auth.login.model;
 
 import lombok.Data;
+import lombok.NonNull;
 
 /**
  * Immutable implementation of {@link LoginStatus}.
@@ -39,7 +40,7 @@ public final class ImmutableLoginStatus implements LoginStatus {
 
     private final String  username;
 
-    public ImmutableLoginStatus(final String username, final Boolean logged) {
+    public ImmutableLoginStatus(@NonNull final String username, @NonNull final Boolean logged) {
         super();
         this.username = username;
         this.logged = logged;
