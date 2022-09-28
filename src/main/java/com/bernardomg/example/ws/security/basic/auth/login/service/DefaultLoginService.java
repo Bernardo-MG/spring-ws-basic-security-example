@@ -43,6 +43,9 @@ public final class DefaultLoginService implements LoginService {
         } else {
             logged = passwordEncoder.matches(password, details.get()
                 .getPassword());
+            if(!logged) {
+                log.debug("Received pasword doesn't match the one stored for username {}", username);
+            }
         }
 
         return new ImmutableLoginStatus(username, logged);
