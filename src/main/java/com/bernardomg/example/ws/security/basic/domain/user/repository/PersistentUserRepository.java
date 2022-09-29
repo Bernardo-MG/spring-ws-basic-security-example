@@ -26,7 +26,6 @@ package com.bernardomg.example.ws.security.basic.domain.user.repository;
 
 import java.util.Optional;
 
-import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.bernardomg.example.ws.security.basic.domain.user.model.PersistentUser;
@@ -40,15 +39,6 @@ import com.bernardomg.example.ws.security.basic.domain.user.model.PersistentUser
 public interface PersistentUserRepository extends JpaRepository<PersistentUser, Long> {
 
     /**
-     * Returns the user details for the received email.
-     *
-     * @param email
-     *            email to search for
-     * @return the user details for the received email
-     */
-    public Optional<PersistentUser> findOneByEmail(final String email);
-
-    /**
      * Returns the user details for the received username.
      *
      * @param username
@@ -56,9 +46,5 @@ public interface PersistentUserRepository extends JpaRepository<PersistentUser, 
      * @return the user details for the received username
      */
     public Optional<PersistentUser> findOneByUsername(final String username);
-
-    @Override
-    @CacheEvict(cacheNames = { "user", "users", "roles" }, allEntries = true)
-    public <S extends PersistentUser> S save(S entity);
 
 }

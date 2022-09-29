@@ -64,6 +64,8 @@ public final class DefaultLoginService implements LoginService {
         final Boolean         logged;
         Optional<UserDetails> details;
 
+        // TODO: The password should arrive encrypted
+
         log.debug("Trying to log: {}", username);
 
         try {

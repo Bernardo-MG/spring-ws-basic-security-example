@@ -44,13 +44,14 @@ import com.bernardomg.example.ws.security.basic.domain.user.repository.Persisten
 import com.bernardomg.example.ws.security.basic.domain.user.repository.PrivilegeRepository;
 
 /**
- * User details service which takes the data from the persistence layer.
+ * User details service which takes the user data from the persistence layer.
  * <p>
- * It uses a Spring repository and searches for any user detail matching the received username.
+ * Makes use of repositories, which will return the user and his privileges.
  * <p>
- * This search is case insensitive, as the persisted user details are expected to contain the username in lower case.
+ * The user search is based on the username, and is case insensitive. As the persisted user details are expected to
+ * contain the username in lower case.
  *
- * @author Bernardo
+ * @author Bernardo Mart&iacute;nez Garrido
  *
  */
 public final class PersistentUserDetailsService implements UserDetailsService {
