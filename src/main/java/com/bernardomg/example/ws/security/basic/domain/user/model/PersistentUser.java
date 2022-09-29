@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-package com.bernardomg.example.ws.security.basic.domain.user.model.persistence;
+package com.bernardomg.example.ws.security.basic.domain.user.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

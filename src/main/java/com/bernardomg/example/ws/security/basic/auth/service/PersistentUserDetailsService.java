@@ -38,8 +38,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
+import com.bernardomg.example.ws.security.basic.domain.user.model.PersistentUser;
 import com.bernardomg.example.ws.security.basic.domain.user.model.Privilege;
-import com.bernardomg.example.ws.security.basic.domain.user.model.persistence.PersistentUser;
 import com.bernardomg.example.ws.security.basic.domain.user.repository.PersistentUserRepository;
 import com.bernardomg.example.ws.security.basic.domain.user.repository.PrivilegeRepository;
 
