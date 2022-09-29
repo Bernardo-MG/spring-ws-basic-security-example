@@ -37,7 +37,7 @@ import com.bernardomg.example.ws.security.basic.domain.entity.model.PersistentEx
  *
  * @author Bernardo Mart&iacute;nez Garrido
  */
-public interface ExampleEntityRepository extends JpaRepository<PersistentExampleEntity, Integer> {
+public interface ExampleEntityRepository extends JpaRepository<PersistentExampleEntity, Long> {
 
     /**
      * Returns all entities with a partial match to the name.

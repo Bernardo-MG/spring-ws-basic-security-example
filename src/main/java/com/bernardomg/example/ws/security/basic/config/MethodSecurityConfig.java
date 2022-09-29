@@ -1,7 +1,7 @@
 /**
  * The MIT License (MIT)
  * <p>
- * Copyright (c) 2022 the original author or authors.
+ * Copyright (c) 2017-2020 the original author or authors.
  * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,45 +22,23 @@
  * SOFTWARE.
  */
 
-package com.bernardomg.example.ws.security.basic.domain.entity.model;
+package com.bernardomg.example.ws.security.basic.config;
+
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 
 /**
- * A simple entity to be used as an example.
+ * Method security configuration.
  *
- * @author Bernardo Mart&iacute;nez Garrido
+ * @author Bernardo Martínez Garrido
+ *
  */
-public interface ExampleEntity {
+@Configuration
+@EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true, jsr250Enabled = true)
+public class MethodSecurityConfig {
 
-    /**
-     * Returns the identifier assigned to this entity.
-     * <p>
-     * If no identifier has been assigned yet, then the value is expected to be {@code null} or lower than zero.
-     *
-     * @return the entity's identifier
-     */
-    public Long getId();
-
-    /**
-     * Returns the name of the entity.
-     *
-     * @return the entity's name
-     */
-    public String getName();
-
-    /**
-     * Sets the identifier assigned to this entity.
-     *
-     * @param identifier
-     *            the identifier for the entity
-     */
-    public void setId(final Long identifier);
-
-    /**
-     * Changes the name of the entity.
-     *
-     * @param name
-     *            the name to set on the entity
-     */
-    public void setName(final String name);
+    public MethodSecurityConfig() {
+        super();
+    }
 
 }
