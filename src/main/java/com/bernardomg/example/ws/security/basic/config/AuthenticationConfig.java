@@ -30,7 +30,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import com.bernardomg.example.ws.security.basic.auth.service.PersistentUserDetailsService;
+import com.bernardomg.example.ws.security.basic.auth.userdetails.PersistentUserDetailsService;
 import com.bernardomg.example.ws.security.basic.domain.user.repository.PersistentUserRepository;
 import com.bernardomg.example.ws.security.basic.domain.user.repository.PrivilegeRepository;
 
