@@ -22,27 +22,27 @@
  * SOFTWARE.
  */
 
-package com.bernardomg.example.ws.security.basic.domain.user.repository;
+package com.bernardomg.example.ws.security.basic.auth.user.repository;
 
-import java.util.Optional;
+import java.util.Collection;
 
-import com.bernardomg.example.ws.security.basic.domain.user.model.User;
+import com.bernardomg.example.ws.security.basic.auth.user.model.Privilege;
 
 /**
- * Repository for users.
+ * Repository for privileges.
  *
  * @author Bernardo Mart&iacute;nez Garrido
  *
  */
-public interface UserRepository {
+public interface PrivilegeRepository {
 
     /**
-     * Returns the user details for the received username.
+     * Returns all the privileges for a user. This requires a join from the user up to the privileges.
      *
-     * @param username
-     *            username to search for
-     * @return the user details for the received username
+     * @param id
+     *            user id
+     * @return all the privileges for the user
      */
-    public Optional<User> findOneByUsername(final String username);
+    public Collection<Privilege> findForUser(final Long id);
 
 }

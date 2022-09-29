@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-package com.bernardomg.example.ws.security.basic.domain.user.repository;
+package com.bernardomg.example.ws.security.basic.auth.user.repository;
 
 import java.util.Collection;
 
@@ -31,7 +31,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
 
-import com.bernardomg.example.ws.security.basic.domain.user.model.Privilege;
+import com.bernardomg.example.ws.security.basic.auth.user.model.Privilege;
 
 import lombok.AllArgsConstructor;
 

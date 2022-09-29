@@ -22,57 +22,27 @@
  * SOFTWARE.
  */
 
-package com.bernardomg.example.ws.security.basic.domain.user.model;
+package com.bernardomg.example.ws.security.basic.auth.user.repository;
 
-import lombok.Data;
+import java.util.Optional;
+
+import com.bernardomg.example.ws.security.basic.auth.user.model.User;
 
 /**
- * Dto implementation of {@code User}.
+ * Repository for users.
  *
  * @author Bernardo Mart&iacute;nez Garrido
  *
  */
-@Data
-public class DtoUser implements User {
+public interface UserRepository {
 
     /**
-     * User expired flag.
+     * Returns the user details for the received username.
+     *
+     * @param username
+     *            username to search for
+     * @return the user details for the received username
      */
-    private Boolean credentialsExpired = false;
-
-    /**
-     * User email.
-     */
-    private String  email;
-
-    /**
-     * User enabled flag.
-     */
-    private Boolean enabled            = true;
-
-    /**
-     * User expired flag.
-     */
-    private Boolean expired            = false;
-
-    /**
-     * Entity id.
-     */
-    private Long    id;
-
-    /**
-     * User locked flag.
-     */
-    private Boolean locked             = false;
-
-    /**
-     * User password.
-     */
-    private String  password;
-
-    /**
-     * User name.
-     */
-    private String  username;
+    public Optional<User> findOneByUsername(final String username);
 
 }

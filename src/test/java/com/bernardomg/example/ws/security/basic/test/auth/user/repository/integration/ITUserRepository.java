@@ -1,5 +1,5 @@
 
-package com.bernardomg.example.ws.security.basic.test.domain.user.repository.integration;
+package com.bernardomg.example.ws.security.basic.test.auth.user.repository.integration;
 
 import java.util.Optional;
 
@@ -9,8 +9,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.jdbc.Sql;
 
-import com.bernardomg.example.ws.security.basic.domain.user.model.User;
-import com.bernardomg.example.ws.security.basic.domain.user.repository.UserRepository;
+import com.bernardomg.example.ws.security.basic.auth.user.model.User;
+import com.bernardomg.example.ws.security.basic.auth.user.repository.UserRepository;
 import com.bernardomg.example.ws.security.basic.test.config.annotation.IntegrationTest;
 
 @IntegrationTest

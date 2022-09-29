@@ -22,27 +22,42 @@
  * SOFTWARE.
  */
 
-package com.bernardomg.example.ws.security.basic.domain.user.repository;
+package com.bernardomg.example.ws.security.basic.auth.user.repository;
 
-import java.util.Collection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
-import com.bernardomg.example.ws.security.basic.domain.user.model.Privilege;
+import org.springframework.jdbc.core.RowMapper;
+
+import com.bernardomg.example.ws.security.basic.auth.user.model.DtoPrivilege;
+import com.bernardomg.example.ws.security.basic.auth.user.model.Privilege;
 
 /**
- * Repository for privileges.
+ * SQL row mapper for privileges.
  *
  * @author Bernardo Mart&iacute;nez Garrido
  *
  */
-public interface PrivilegeRepository {
+public final class PrivilegeRowMapper implements RowMapper<Privilege> {
 
-    /**
-     * Returns all the privileges for a user. This requires a join from the user up to the privileges.
-     *
-     * @param id
-     *            user id
-     * @return all the privileges for the user
-     */
-    public Collection<Privilege> findForUser(final Long id);
+    public PrivilegeRowMapper() {
+        super();
+    }
+
+    @Override
+    public final Privilege mapRow(final ResultSet rs, final int rowNum) throws SQLException {
+        final DtoPrivilege privilege;
+
+        try {
+            privilege = new DtoPrivilege();
+            privilege.setId(rs.getLong("id"));
+            privilege.setName(rs.getString("name"));
+        } catch (final SQLException e) {
+            // TODO: Handle better
+            throw new RuntimeException(e);
+        }
+
+        return privilege;
+    }
 
 }

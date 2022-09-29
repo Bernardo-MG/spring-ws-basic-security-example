@@ -22,15 +22,15 @@
  * SOFTWARE.
  */
 
-package com.bernardomg.example.ws.security.basic.domain.user.repository;
+package com.bernardomg.example.ws.security.basic.auth.user.repository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import org.springframework.jdbc.core.RowMapper;
 
-import com.bernardomg.example.ws.security.basic.domain.user.model.DtoPrivilege;
-import com.bernardomg.example.ws.security.basic.domain.user.model.Privilege;
+import com.bernardomg.example.ws.security.basic.auth.user.model.DtoUser;
+import com.bernardomg.example.ws.security.basic.auth.user.model.User;
 
 /**
  * SQL row mapper for privileges.
@@ -38,26 +38,32 @@ import com.bernardomg.example.ws.security.basic.domain.user.model.Privilege;
  * @author Bernardo Mart&iacute;nez Garrido
  *
  */
-public final class PrivilegeRowMapper implements RowMapper<Privilege> {
+public final class UserRowMapper implements RowMapper<User> {
 
-    public PrivilegeRowMapper() {
+    public UserRowMapper() {
         super();
     }
 
     @Override
-    public final Privilege mapRow(final ResultSet rs, final int rowNum) throws SQLException {
-        final DtoPrivilege privilege;
+    public final User mapRow(final ResultSet rs, final int rowNum) throws SQLException {
+        final DtoUser user;
 
         try {
-            privilege = new DtoPrivilege();
-            privilege.setId(rs.getLong("id"));
-            privilege.setName(rs.getString("name"));
+            user = new DtoUser();
+            user.setId(rs.getLong("id"));
+            user.setUsername(rs.getString("username"));
+            user.setPassword(rs.getString("password"));
+            user.setEmail(rs.getString("email"));
+            user.setCredentialsExpired(rs.getBoolean("credentials_expired"));
+            user.setEnabled(rs.getBoolean("enabled"));
+            user.setExpired(rs.getBoolean("expired"));
+            user.setLocked(rs.getBoolean("locked"));
         } catch (final SQLException e) {
             // TODO: Handle better
             throw new RuntimeException(e);
         }
 
-        return privilege;
+        return user;
     }
 
 }

@@ -23,7 +23,7 @@
  */
 
 /**
- * User repositories.
+ * User model.
  */
 
-package com.bernardomg.example.ws.security.basic.domain.user.repository;
+package com.bernardomg.example.ws.security.basic.auth.user.model;
