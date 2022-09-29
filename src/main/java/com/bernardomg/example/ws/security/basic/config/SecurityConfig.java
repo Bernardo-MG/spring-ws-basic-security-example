@@ -24,66 +24,38 @@
 
 package com.bernardomg.example.ws.security.basic.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.Customizer;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
-import org.springframework.security.config.annotation.web.configurers.ExpressionUrlAuthorizationConfigurer;
-import org.springframework.security.config.annotation.web.configurers.FormLoginConfigurer;
-import org.springframework.security.config.annotation.web.configurers.LogoutConfigurer;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
+import com.bernardomg.example.ws.security.basic.auth.userdetails.PersistentUserDetailsService;
+import com.bernardomg.example.ws.security.basic.domain.user.repository.PersistentUserRepository;
+import com.bernardomg.example.ws.security.basic.domain.user.repository.PrivilegeRepository;
+
+/**
+ * Security configuration.
+ *
+ * @author Bernardo Martínez Garrido
+ *
+ */
 @Configuration
-@EnableWebSecurity
 public class SecurityConfig {
-
-    @Autowired
-    private UserDetailsService userDetailsService;
 
     public SecurityConfig() {
         super();
     }
 
-    @Bean
-    public SecurityFilterChain filterChain(final HttpSecurity http) throws Exception {
-        final Customizer<ExpressionUrlAuthorizationConfigurer<HttpSecurity>.ExpressionInterceptUrlRegistry> authorizeRequestsCustomizer;
-        final Customizer<FormLoginConfigurer<HttpSecurity>>                                                 formLoginCustomizer;
-        final Customizer<LogoutConfigurer<HttpSecurity>>                                                    logoutCustomizer;
-
-        // Authorization
-        authorizeRequestsCustomizer = c -> c.antMatchers("/actuator/**")
-            .permitAll()
-            .antMatchers("/login/**")
-            .permitAll()
-            .anyRequest()
-            .authenticated();
-        // Login form
-        formLoginCustomizer = c -> c.disable();
-        // Logout
-        logoutCustomizer = c -> c.disable();
-
-        http.csrf()
-            .disable()
-            .cors()
-            .and()
-            .authorizeRequests(authorizeRequestsCustomizer)
-            .formLogin(formLoginCustomizer)
-            .logout(logoutCustomizer)
-            .httpBasic();
-
-        http.userDetailsService(userDetailsService);
-
-        return http.build();
+    @Bean("passwordEncoder")
+    public PasswordEncoder getPasswordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 
-    @Bean
-    public WebSecurityCustomizer webSecurityCustomizer() {
-        return (web) -> web.ignoring()
-            .antMatchers("/login/**");
+    @Bean("userDetailsService")
+    public UserDetailsService getUserDetailsService(final PersistentUserRepository userRepository,
+            final PrivilegeRepository privilegeRepository) {
+        return new PersistentUserDetailsService(userRepository, privilegeRepository);
     }
 
 }
