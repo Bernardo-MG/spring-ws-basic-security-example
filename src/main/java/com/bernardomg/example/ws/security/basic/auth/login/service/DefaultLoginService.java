@@ -64,8 +64,6 @@ public final class DefaultLoginService implements LoginService {
         final Boolean         logged;
         Optional<UserDetails> details;
 
-        // TODO: Test
-
         log.debug("Trying to log: {}", username);
 
         try {
