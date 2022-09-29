@@ -12,12 +12,24 @@ import com.bernardomg.example.ws.security.basic.domain.user.model.Privilege;
 
 import lombok.AllArgsConstructor;
 
+/**
+ * Default implementation of the privilege repository.
+ *
+ * @author Bernardo Mart&iacute;nez Garrido
+ *
+ */
 @Repository
 @AllArgsConstructor
 public final class DefaultPrivilegeRepository implements PrivilegeRepository {
 
+    /**
+     * JDBC template for running queries.
+     */
     private final NamedParameterJdbcTemplate jdbcTemplate;
 
+    /**
+     * Query for finding the privileges of a user.
+     */
     private final String                     queryForUser = "SELECT p.name FROM privileges p LEFT JOIN role_privileges rp ON p.id = rp.role_id LEFT JOIN roles r ON r.id = rp.role_id LEFT JOIN USER_ROLES ur ON r.id = ur.role_id LEFT JOIN users u ON u.id = ur.user_id WHERE u.id = :id";
 
     @Override

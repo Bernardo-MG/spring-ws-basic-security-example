@@ -26,11 +26,23 @@ package com.bernardomg.example.ws.security.basic.auth.login.model;
 
 import lombok.Data;
 
+/**
+ * Contains all the data for a login attempt.
+ *
+ * @author Bernardo Mart&iacute;nez Garrido
+ *
+ */
 @Data
 public class UserForm {
 
+    /**
+     * User password.
+     */
     private String password;
 
+    /**
+     * User username.
+     */
     private String username;
 
 }

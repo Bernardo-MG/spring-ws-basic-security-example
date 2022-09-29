@@ -38,13 +38,25 @@ import com.bernardomg.example.ws.security.basic.auth.login.model.LoginStatus;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * Default implementation of the login service.
+ *
+ * @author Bernardo Mart&iacute;nez Garrido
+ *
+ */
 @Service
 @Slf4j
 @AllArgsConstructor
 public final class DefaultLoginService implements LoginService {
 
+    /**
+     * Password encoder, for validating passwords.
+     */
     private final PasswordEncoder    passwordEncoder;
 
+    /**
+     * User details service, to find and validate users.
+     */
     private final UserDetailsService service;
 
     @Override
