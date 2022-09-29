@@ -25,22 +25,21 @@
 package com.bernardomg.example.ws.security.basic.mvc.error.model;
 
 import lombok.Data;
+import lombok.NonNull;
 
 /**
- * DTO implementation of {@code FieldValidationError}.
+ * Immutable failure object.
  *
  * @author Bernardo Mart&iacute;nez Garrido
  *
  */
 @Data
-public final class DtoFieldFailure implements FieldFailure {
+public class ImmutableFailure implements Failure {
 
-    private String field;
-
-    private String message;
-
-    private String object;
-
-    private Object value;
+    /**
+     * Failure message.
+     */
+    @NonNull
+    private final String message;
 
 }
