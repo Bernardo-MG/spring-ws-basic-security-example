@@ -42,7 +42,7 @@ import lombok.extern.slf4j.Slf4j;
  * Advice to wrap all the responses into the response object.
  * <p>
  * Unless the response is already an instance of {@link Response}, or the Spring {@link ResponseEntity}, it will be
- * wrapped into a {@code Response}. Paginated data will be wrapped into a {@link PaginatedResponse}.
+ * wrapped into a {@code Response}.
  *
  * @author Bernardo Mart&iacute;nez Garrido
  *
