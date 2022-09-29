@@ -33,8 +33,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import com.bernardomg.example.ws.security.basic.domain.user.model.Privilege;
-
 import lombok.Data;
 
 /**
@@ -46,7 +44,7 @@ import lombok.Data;
 @Entity(name = "Privilege")
 @Table(name = "PRIVILEGES")
 @Data
-public class PersistentPrivilege implements Privilege, Serializable {
+public class PersistentPrivilege implements Serializable {
 
     /**
      * Serialization id.
