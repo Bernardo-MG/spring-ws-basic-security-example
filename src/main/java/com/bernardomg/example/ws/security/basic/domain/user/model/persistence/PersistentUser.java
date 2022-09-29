@@ -24,18 +24,11 @@
 
 package com.bernardomg.example.ws.security.basic.domain.user.model.persistence;
 
-import java.util.ArrayList;
-import java.util.Collection;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -56,31 +49,31 @@ public class PersistentUser {
      * Serialization id.
      */
     @Transient
-    private static final long          serialVersionUID   = 4807136960800402795L;
+    private static final long serialVersionUID   = 4807136960800402795L;
 
     /**
      * User expired flag.
      */
     @Column(name = "CREDENTIALS_EXPIRED", nullable = false)
-    private Boolean                    credentialsExpired = false;
+    private Boolean           credentialsExpired = false;
 
     /**
      * User email.
      */
     @Column(name = "email", nullable = false, length = 60)
-    private String                     email;
+    private String            email;
 
     /**
      * User enabled flag.
      */
     @Column(name = "enabled", nullable = false)
-    private Boolean                    enabled            = true;
+    private Boolean           enabled            = true;
 
     /**
      * User expired flag.
      */
     @Column(name = "expired", nullable = false)
-    private Boolean                    expired            = false;
+    private Boolean           expired            = false;
 
     /**
      * Entity id.
@@ -88,33 +81,25 @@ public class PersistentUser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false, unique = true)
-    private Long                       id;
+    private Long              id;
 
     /**
      * User locked flag.
      */
     @Column(name = "locked", nullable = false)
-    private Boolean                    locked             = false;
+    private Boolean           locked             = false;
 
     /**
      * User password.
      */
     @Column(name = "password", nullable = false, length = 60)
-    private String                     password;
-
-    /**
-     * Granted roles.
-     */
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "USER_ROLES", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
-    private Collection<PersistentRole> roles              = new ArrayList<>();
+    private String            password;
 
     /**
      * User name.
      */
     @Column(name = "name", nullable = false, unique = true, length = 60)
-    private String                     username;
+    private String            username;
 
     /**
      * Default constructor.

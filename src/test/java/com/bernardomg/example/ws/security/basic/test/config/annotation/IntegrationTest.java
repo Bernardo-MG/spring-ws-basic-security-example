@@ -22,29 +22,28 @@
  * SOFTWARE.
  */
 
-package com.bernardomg.example.ws.security.basic.domain.user.repository;
+package com.bernardomg.example.ws.security.basic.test.config.annotation;
 
-import java.util.Collection;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Rollback;
+import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
+import org.springframework.transaction.annotation.Transactional;
 
-import com.bernardomg.example.ws.security.basic.domain.user.model.persistence.PersistentRole;
+import com.bernardomg.example.ws.security.basic.Application;
 
-/**
- * Repository for user roles.
- *
- * @author Bernardo Mart&iacute;nez Garrido
- *
- */
-public interface PersistentRoleRepository extends JpaRepository<PersistentRole, Long> {
-
-    /**
-     * Returns all the roles with one of the names received.
-     *
-     * @param names
-     *            names of the roles
-     * @return roles names in the input
-     */
-    public Collection<PersistentRole> findByNameIn(final Iterable<String> names);
+@SpringJUnitConfig
+@SpringBootTest(classes = Application.class)
+@ActiveProfiles("test")
+@Transactional
+@Rollback
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.TYPE)
+public @interface IntegrationTest {
 
 }

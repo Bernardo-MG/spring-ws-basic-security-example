@@ -32,6 +32,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.bernardomg.example.ws.security.basic.auth.service.PersistentUserDetailsService;
 import com.bernardomg.example.ws.security.basic.domain.user.repository.PersistentUserRepository;
+import com.bernardomg.example.ws.security.basic.domain.user.repository.PrivilegeRepository;
 
 /**
  * Authentication configuration.
@@ -52,8 +53,9 @@ public class AuthenticationConfig {
     }
 
     @Bean("userDetailsService")
-    public UserDetailsService getUserDetailsService(final PersistentUserRepository userRepository) {
-        return new PersistentUserDetailsService(userRepository);
+    public UserDetailsService getUserDetailsService(final PersistentUserRepository userRepository,
+            final PrivilegeRepository privilegeRepository) {
+        return new PersistentUserDetailsService(userRepository, privilegeRepository);
     }
 
 }
