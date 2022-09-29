@@ -22,27 +22,27 @@
  * SOFTWARE.
  */
 
-package com.bernardomg.example.ws.security.basic.domain.user.model;
+package com.bernardomg.example.ws.security.basic.domain.user.repository;
 
-import lombok.Data;
+import java.util.Optional;
+
+import com.bernardomg.example.ws.security.basic.domain.user.model.User;
 
 /**
- * Dto implementation of {@code Privilege}.
+ * Repository for users.
  *
  * @author Bernardo Mart&iacute;nez Garrido
  *
  */
-@Data
-public final class DtoPrivilege implements Privilege {
+public interface UserRepository {
 
     /**
-     * Entity id.
+     * Returns the user details for the received username.
+     *
+     * @param username
+     *            username to search for
+     * @return the user details for the received username
      */
-    private Long   id;
-
-    /**
-     * Privilege name.
-     */
-    private String name;
+    public Optional<User> findOneByUsername(final String username);
 
 }

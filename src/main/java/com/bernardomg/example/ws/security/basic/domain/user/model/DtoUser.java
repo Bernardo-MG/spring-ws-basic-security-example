@@ -22,41 +22,57 @@
  * SOFTWARE.
  */
 
-package com.bernardomg.example.ws.security.basic.domain.user.repository;
+package com.bernardomg.example.ws.security.basic.domain.user.model;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
-import org.springframework.jdbc.core.RowMapper;
-
-import com.bernardomg.example.ws.security.basic.domain.user.model.DtoPrivilege;
-import com.bernardomg.example.ws.security.basic.domain.user.model.Privilege;
+import lombok.Data;
 
 /**
- * SQL row mapper for privileges.
+ * Dto implementation of {@code User}.
  *
  * @author Bernardo Mart&iacute;nez Garrido
  *
  */
-public final class PrivilegeRowRowMapper implements RowMapper<Privilege> {
+@Data
+public class DtoUser implements User {
 
-    public PrivilegeRowRowMapper() {
-        super();
-    }
+    /**
+     * User expired flag.
+     */
+    private Boolean credentialsExpired = false;
 
-    @Override
-    public final Privilege mapRow(final ResultSet rs, final int rowNum) throws SQLException {
-        final DtoPrivilege privilege;
+    /**
+     * User email.
+     */
+    private String  email;
 
-        try {
-            privilege = new DtoPrivilege();
-            privilege.setName(rs.getString("name"));
-        } catch (final SQLException e) {
-            // TODO: Handle better
-            throw new RuntimeException(e);
-        }
+    /**
+     * User enabled flag.
+     */
+    private Boolean enabled            = true;
 
-        return privilege;
-    }
+    /**
+     * User expired flag.
+     */
+    private Boolean expired            = false;
+
+    /**
+     * Entity id.
+     */
+    private Long    id;
+
+    /**
+     * User locked flag.
+     */
+    private Boolean locked             = false;
+
+    /**
+     * User password.
+     */
+    private String  password;
+
+    /**
+     * User name.
+     */
+    private String  username;
 
 }

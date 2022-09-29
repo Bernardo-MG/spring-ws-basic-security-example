@@ -24,27 +24,40 @@
 
 package com.bernardomg.example.ws.security.basic.domain.user.repository;
 
-import java.util.Optional;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.jdbc.core.RowMapper;
 
-import com.bernardomg.example.ws.security.basic.domain.user.model.PersistentUser;
+import com.bernardomg.example.ws.security.basic.domain.user.model.DtoPrivilege;
+import com.bernardomg.example.ws.security.basic.domain.user.model.Privilege;
 
 /**
- * Repository for users.
+ * SQL row mapper for privileges.
  *
  * @author Bernardo Mart&iacute;nez Garrido
  *
  */
-public interface PersistentUserRepository extends JpaRepository<PersistentUser, Long> {
+public final class PrivilegeRowMapper implements RowMapper<Privilege> {
 
-    /**
-     * Returns the user details for the received username.
-     *
-     * @param username
-     *            username to search for
-     * @return the user details for the received username
-     */
-    public Optional<PersistentUser> findOneByUsername(final String username);
+    public PrivilegeRowMapper() {
+        super();
+    }
+
+    @Override
+    public final Privilege mapRow(final ResultSet rs, final int rowNum) throws SQLException {
+        final DtoPrivilege privilege;
+
+        try {
+            privilege = new DtoPrivilege();
+            privilege.setId(rs.getLong("id"));
+            privilege.setName(rs.getString("name"));
+        } catch (final SQLException e) {
+            // TODO: Handle better
+            throw new RuntimeException(e);
+        }
+
+        return privilege;
+    }
 
 }
