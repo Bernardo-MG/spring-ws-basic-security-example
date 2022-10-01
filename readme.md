@@ -53,7 +53,7 @@ Import `src/test/resources/basic_auth.postman_collection.json` to get queries fo
 | User    | Password | Permissions |
 |---------|----------|-------------|
 | admin   | 1234     | all         |
-| noroles | 1111     | none        |
+| noread  | 1111     | none        |
 
 ## Collaborate
 
