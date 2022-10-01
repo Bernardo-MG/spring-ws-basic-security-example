@@ -22,21 +22,57 @@
  * SOFTWARE.
  */
 
-package com.bernardomg.example.ws.security.basic.auth.user.domain;
+package com.bernardomg.example.ws.security.basic.auth.user.model;
+
+import lombok.Data;
 
 /**
- * Role privilege. Represents a specific permission.
+ * Dto implementation of {@code User}.
  *
  * @author Bernardo Mart&iacute;nez Garrido
  *
  */
-public interface Privilege {
+@Data
+public class DtoUser implements User {
 
     /**
-     * Returns the privilege name.
-     *
-     * @return the privilege name
+     * User expired flag.
      */
-    public String getName();
+    private Boolean credentialsExpired = false;
+
+    /**
+     * User email.
+     */
+    private String  email;
+
+    /**
+     * User enabled flag.
+     */
+    private Boolean enabled            = true;
+
+    /**
+     * User expired flag.
+     */
+    private Boolean expired            = false;
+
+    /**
+     * Entity id.
+     */
+    private Long    id;
+
+    /**
+     * User locked flag.
+     */
+    private Boolean locked             = false;
+
+    /**
+     * User password.
+     */
+    private String  password;
+
+    /**
+     * User name.
+     */
+    private String  username;
 
 }

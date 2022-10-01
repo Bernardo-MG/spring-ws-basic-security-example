@@ -26,7 +26,7 @@ package com.bernardomg.example.ws.security.basic.auth.user.repository;
 
 import java.util.Optional;
 
-import com.bernardomg.example.ws.security.basic.auth.user.domain.User;
+import com.bernardomg.example.ws.security.basic.auth.user.model.User;
 
 /**
  * Repository for users.
