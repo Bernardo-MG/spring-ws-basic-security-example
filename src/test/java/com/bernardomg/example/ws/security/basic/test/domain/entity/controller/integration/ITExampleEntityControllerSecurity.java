@@ -50,7 +50,7 @@ public final class ITExampleEntityControllerSecurity {
     }
 
     @Test
-    @DisplayName("An authorized request is accepted")
+    @DisplayName("An authenticated request is authorized")
     public final void testGet_authorized() throws Exception {
         final ResultActions result;
 
@@ -62,7 +62,7 @@ public final class ITExampleEntityControllerSecurity {
     }
 
     @Test
-    @DisplayName("An unauthorized request is rejected")
+    @DisplayName("A not authenticated request is not authorized")
     public final void testGet_unauthorized() throws Exception {
         final ResultActions result;
 

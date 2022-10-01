@@ -50,8 +50,8 @@ public final class ITExampleEntityControllerSecurityDisabledUser {
     }
 
     @Test
-    @DisplayName("An authorized request is rejected")
-    public final void testGet_authorized() throws Exception {
+    @DisplayName("An authenticated request is not authorized")
+    public final void testGet_authenticated_notAuthorized() throws Exception {
         final ResultActions result;
 
         result = mockMvc.perform(getRequestAuthorized());
