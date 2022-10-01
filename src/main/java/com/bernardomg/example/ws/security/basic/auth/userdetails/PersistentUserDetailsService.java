@@ -36,7 +36,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
-import com.bernardomg.example.ws.security.basic.auth.user.model.Privilege;
+import com.bernardomg.example.ws.security.basic.auth.user.domain.Privilege;
 import com.bernardomg.example.ws.security.basic.auth.user.repository.PrivilegeRepository;
 import com.bernardomg.example.ws.security.basic.auth.user.repository.UserRepository;
 
@@ -99,10 +99,8 @@ public final class PersistentUserDetailsService implements UserDetailsService {
 
     @Override
     public final UserDetails loadUserByUsername(final String username) throws UsernameNotFoundException {
-        final Optional<com.bernardomg.example.ws.security.basic.auth.user.model.User> user;
-        final Collection<? extends GrantedAuthority>                                  authorities;
-
-        log.debug("Asked for username {}", username);
+        final Optional<com.bernardomg.example.ws.security.basic.auth.user.domain.User> user;
+        final Collection<? extends GrantedAuthority>                                   authorities;
 
         user = userRepo.findOneByUsername(username.toLowerCase());
 
@@ -119,7 +117,7 @@ public final class PersistentUserDetailsService implements UserDetailsService {
             throw new UsernameNotFoundException(username);
         }
 
-        log.debug("Username {} found in DB", username);
+        log.debug("User {} exists and is valid", username);
         log.debug("Authorities for {}: {}", username, authorities);
 
         return toUserDetails(user.get(), authorities);
@@ -148,7 +146,7 @@ public final class PersistentUserDetailsService implements UserDetailsService {
      *            entity to transform
      * @return equivalent user details
      */
-    private final UserDetails toUserDetails(final com.bernardomg.example.ws.security.basic.auth.user.model.User user,
+    private final UserDetails toUserDetails(final com.bernardomg.example.ws.security.basic.auth.user.domain.User user,
             final Collection<? extends GrantedAuthority> authorities) {
         final Boolean enabled;
         final Boolean accountNonExpired;

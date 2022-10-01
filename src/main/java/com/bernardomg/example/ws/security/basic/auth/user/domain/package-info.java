@@ -22,27 +22,8 @@
  * SOFTWARE.
  */
 
-package com.bernardomg.example.ws.security.basic.auth.user.model;
-
-import lombok.Data;
-
 /**
- * Dto implementation of {@code Privilege}.
- *
- * @author Bernardo Mart&iacute;nez Garrido
- *
+ * User model.
  */
-@Data
-public final class DtoPrivilege implements Privilege {
 
-    /**
-     * Entity id.
-     */
-    private Long   id;
-
-    /**
-     * Privilege name.
-     */
-    private String name;
-
-}
+package com.bernardomg.example.ws.security.basic.auth.user.domain;

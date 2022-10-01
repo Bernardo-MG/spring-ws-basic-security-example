@@ -57,35 +57,40 @@ public final class DefaultLoginService implements LoginService {
     /**
      * User details service, to find and validate users.
      */
-    private final UserDetailsService service;
+    private final UserDetailsService userDetailsService;
 
     @Override
     public final LoginStatus login(final String username, final String password) {
         final Boolean         logged;
+        final LoginStatus     status;
         Optional<UserDetails> details;
 
-        // TODO: The password should arrive encrypted
-
-        log.debug("Trying to log: {}", username);
+        log.debug("Log in attempt for {}", username);
 
         try {
-            details = Optional.of(service.loadUserByUsername(username));
+            details = Optional.of(userDetailsService.loadUserByUsername(username));
         } catch (final UsernameNotFoundException e) {
             details = Optional.empty();
         }
 
         if (details.isEmpty()) {
+            // No user found for username
             log.debug("No user for username {}", username);
             logged = false;
         } else {
+            // Validate password
             logged = passwordEncoder.matches(password, details.get()
                 .getPassword());
             if (!logged) {
-                log.debug("Received pasword doesn't match the one stored for username {}", username);
+                log.debug("Received password doesn't match the one stored for username {}", username);
             }
         }
 
-        return new ImmutableLoginStatus(username, logged);
+        status = new ImmutableLoginStatus(username, logged);
+
+        log.debug("Finished log in attempt for {}. Logged in: {}", username, status.getLogged());
+
+        return status;
     }
 
 }

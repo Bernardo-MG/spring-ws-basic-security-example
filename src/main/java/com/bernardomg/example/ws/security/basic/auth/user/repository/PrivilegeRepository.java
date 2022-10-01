@@ -26,7 +26,7 @@ package com.bernardomg.example.ws.security.basic.auth.user.repository;
 
 import java.util.Collection;
 
-import com.bernardomg.example.ws.security.basic.auth.user.model.Privilege;
+import com.bernardomg.example.ws.security.basic.auth.user.domain.Privilege;
 
 /**
  * Repository for privileges.

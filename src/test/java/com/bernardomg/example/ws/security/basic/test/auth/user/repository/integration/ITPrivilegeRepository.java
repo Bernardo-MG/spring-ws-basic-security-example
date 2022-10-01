@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.jdbc.Sql;
 
-import com.bernardomg.example.ws.security.basic.auth.user.model.Privilege;
+import com.bernardomg.example.ws.security.basic.auth.user.domain.Privilege;
 import com.bernardomg.example.ws.security.basic.auth.user.repository.PrivilegeRepository;
 import com.bernardomg.example.ws.security.basic.test.config.annotation.IntegrationTest;
 
