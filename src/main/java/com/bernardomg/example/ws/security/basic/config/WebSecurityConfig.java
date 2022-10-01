@@ -60,9 +60,7 @@ public class WebSecurityConfig {
         final Customizer<LogoutConfigurer<HttpSecurity>>                                                    logoutCustomizer;
 
         // Authorization
-        authorizeRequestsCustomizer = c -> c.antMatchers("/actuator/**")
-            .permitAll()
-            .antMatchers("/login/**")
+        authorizeRequestsCustomizer = c -> c.antMatchers("/actuator/**", "/login/**")
             .permitAll()
             .anyRequest()
             .authenticated();
