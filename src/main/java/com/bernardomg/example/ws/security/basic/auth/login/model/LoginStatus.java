@@ -40,6 +40,13 @@ public interface LoginStatus {
     public Boolean getLogged();
 
     /**
+     * Returns the security token.
+     *
+     * @return the security token
+     */
+    public String getToken();
+
+    /**
      * Returns the username of the user who attempted login.
      *
      * @return the username

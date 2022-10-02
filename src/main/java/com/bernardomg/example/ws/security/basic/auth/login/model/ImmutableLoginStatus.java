@@ -38,13 +38,16 @@ public final class ImmutableLoginStatus implements LoginStatus {
 
     private final Boolean logged;
 
+    private final String  token;
+
     private final String  username;
 
-    public ImmutableLoginStatus(@NonNull final String usnm, @NonNull final Boolean lgd) {
+    public ImmutableLoginStatus(@NonNull final String usnm, @NonNull final Boolean lgd, @NonNull final String tkn) {
         super();
 
         username = usnm;
         logged = lgd;
+        token = tkn;
     }
 
 }

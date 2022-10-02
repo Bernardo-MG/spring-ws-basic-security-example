@@ -24,6 +24,8 @@
 
 package com.bernardomg.example.ws.security.basic.auth.login.service;
 
+import java.nio.charset.Charset;
+import java.util.Base64;
 import java.util.Optional;
 
 import org.springframework.security.core.userdetails.UserDetails;
@@ -63,16 +65,19 @@ public final class DefaultLoginService implements LoginService {
     public final LoginStatus login(final String username, final String password) {
         final Boolean         logged;
         final LoginStatus     status;
+        final String token;
         Optional<UserDetails> details;
 
         log.debug("Log in attempt for {}", username);
 
+        // Find the user
         try {
             details = Optional.of(userDetailsService.loadUserByUsername(username));
         } catch (final UsernameNotFoundException e) {
             details = Optional.empty();
         }
 
+        // Check if the user is valid
         if (details.isEmpty()) {
             // No user found for username
             log.debug("No user for username {}", username);
@@ -86,11 +91,22 @@ public final class DefaultLoginService implements LoginService {
             }
         }
 
-        status = new ImmutableLoginStatus(username, logged);
+        // Generate token
+        token = generateToken(username, password);
+        
+        status = new ImmutableLoginStatus(username, logged, token);
 
-        log.debug("Finished log in attempt for {}. Logged in: {}", username, status.getLogged());
+        log.debug("Finished log in attempt for {}. Logged in: {}", username, logged);
 
         return status;
+    }
+    
+    private final String generateToken(final String username, final String password) {
+        final String rawToken;
+        
+        rawToken = String.format("%s:%s", username,password);
+        return Base64.getEncoder().encodeToString( 
+            rawToken.getBytes(Charset.forName("UTF-8")) );
     }
 
 }
