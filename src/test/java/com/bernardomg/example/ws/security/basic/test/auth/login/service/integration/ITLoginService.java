@@ -26,7 +26,7 @@ public class ITLoginService {
 
     @Test
     @DisplayName("An existing user with invalid password doesn't log in")
-    public final void testLogin_invalidPassword() throws Exception {
+    public final void testLogin_invalidPassword() {
         final LoginStatus result;
 
         result = service.login("admin", "abc");
@@ -36,7 +36,7 @@ public class ITLoginService {
 
     @Test
     @DisplayName("A not existing user doesn't log in")
-    public final void testLogin_notExisting() throws Exception {
+    public final void testLogin_notExisting() {
         final LoginStatus result;
 
         result = service.login("abc", "1234");
@@ -46,12 +46,23 @@ public class ITLoginService {
 
     @Test
     @DisplayName("An existing user with valid password logs in")
-    public final void testLogin_valid() throws Exception {
+    public final void testLogin_valid() {
         final LoginStatus result;
 
         result = service.login("admin", "1234");
 
         Assertions.assertTrue(result.getLogged());
+    }
+
+    @Test
+    @DisplayName("A valid login returns all the data")
+    public final void testLogin_valid_data() {
+        final LoginStatus result;
+
+        result = service.login("admin", "1234");
+
+        Assertions.assertEquals("admin", result.getUsername());
+        Assertions.assertEquals("YWRtaW46MTIzNA==", result.getToken());
     }
 
 }
