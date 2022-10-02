@@ -76,6 +76,7 @@ public class WebSecurityConfig {
             .authorizeRequests(authorizeRequestsCustomizer)
             .formLogin(formLoginCustomizer)
             .logout(logoutCustomizer)
+            // Activates HTTP Basic authentication
             .httpBasic();
 
         http.userDetailsService(userDetailsService);
