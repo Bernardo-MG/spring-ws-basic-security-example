@@ -14,4 +14,16 @@ Once running the web service will be available at [http://localhost:8080/](http:
 
 ### Requests with Postman
 
-Import `src/test/resources/auth.postman_collection.json` to get queries for all the operations including authentication.
+Import `src/test/resources/basic_auth.postman_collection.json` to get queries for all the operations including authentication.
+
+### Users
+
+| User     | Password | Permissions    |
+|----------|----------|----------------|
+| admin    | 1234     | all            |
+| noroles  | 1111     | none           |
+| locked   | 1111     | all            |
+| expired  | 1111     | all            |
+| disabled | 1111     | all            |
+| expcreds | 1111     | all            |
+| noread   | 1111     | all minus read |
