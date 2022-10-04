@@ -24,7 +24,7 @@
 
 package com.bernardomg.example.ws.security.basic.auth.login.service;
 
-import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 import java.util.Optional;
 
@@ -106,7 +106,7 @@ public final class DefaultLoginService implements LoginService {
 
         rawToken = String.format("%s:%s", username, password);
         return Base64.getEncoder()
-            .encodeToString(rawToken.getBytes(Charset.forName("UTF-8")));
+            .encodeToString(rawToken.getBytes(StandardCharsets.UTF_8));
     }
 
 }
