@@ -38,6 +38,7 @@ import com.bernardomg.example.ws.security.basic.domain.entity.model.ExampleEntit
 import com.bernardomg.example.ws.security.basic.domain.entity.service.ExampleEntityService;
 
 import lombok.AllArgsConstructor;
+import lombok.NonNull;
 
 /**
  * Rest controller for the example entities.
@@ -52,6 +53,7 @@ public class ExampleEntityController {
     /**
      * Example entity service.
      */
+    @NonNull
     private final ExampleEntityService exampleEntityService;
 
     /**
