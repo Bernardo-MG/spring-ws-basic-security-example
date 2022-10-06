@@ -35,7 +35,7 @@ import com.bernardomg.example.ws.security.basic.auth.basic.token.BasicTokenProvi
 import com.bernardomg.example.ws.security.basic.auth.login.service.LoginService;
 import com.bernardomg.example.ws.security.basic.auth.login.service.TokenLoginService;
 import com.bernardomg.example.ws.security.basic.auth.login.validation.LoginValidator;
-import com.bernardomg.example.ws.security.basic.auth.login.validation.ValidUserNameAndPasswordLoginValidator;
+import com.bernardomg.example.ws.security.basic.auth.login.validation.CredentialsLoginValidator;
 import com.bernardomg.example.ws.security.basic.auth.token.TokenProvider;
 import com.bernardomg.example.ws.security.basic.auth.user.repository.PrivilegeRepository;
 import com.bernardomg.example.ws.security.basic.auth.user.repository.UserRepository;
@@ -60,7 +60,7 @@ public class SecurityConfig {
             final PasswordEncoder passwordEncoder, final TokenProvider tokenProv) {
         final LoginValidator loginValidator;
 
-        loginValidator = new ValidUserNameAndPasswordLoginValidator(userDetailsService, passwordEncoder);
+        loginValidator = new CredentialsLoginValidator(userDetailsService, passwordEncoder);
         return new TokenLoginService(tokenProv, loginValidator);
     }
 
