@@ -32,6 +32,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.bernardomg.example.ws.security.basic.auth.basic.token.BasicTokenProvider;
+import com.bernardomg.example.ws.security.basic.auth.login.service.LoginService;
+import com.bernardomg.example.ws.security.basic.auth.login.service.TokenLoginService;
+import com.bernardomg.example.ws.security.basic.auth.login.validation.LoginValidator;
+import com.bernardomg.example.ws.security.basic.auth.login.validation.ValidUserNameAndPasswordLoginValidator;
 import com.bernardomg.example.ws.security.basic.auth.token.TokenProvider;
 import com.bernardomg.example.ws.security.basic.auth.user.repository.PrivilegeRepository;
 import com.bernardomg.example.ws.security.basic.auth.user.repository.UserRepository;
@@ -40,7 +44,7 @@ import com.bernardomg.example.ws.security.basic.auth.userdetails.PersistentUserD
 /**
  * Security configuration.
  *
- * @author Bernardo Martínez Garrido
+ * @author Bernardo Mart&iacute;nez Garrido
  *
  */
 @Configuration
@@ -49,6 +53,15 @@ public class SecurityConfig {
 
     public SecurityConfig() {
         super();
+    }
+
+    @Bean("loginService")
+    public LoginService getLoginService(final UserDetailsService userDetailsService,
+            final PasswordEncoder passwordEncoder, final TokenProvider tokenProv) {
+        final LoginValidator loginValidator;
+
+        loginValidator = new ValidUserNameAndPasswordLoginValidator(userDetailsService, passwordEncoder);
+        return new TokenLoginService(tokenProv, loginValidator);
     }
 
     @Bean("passwordEncoder")
