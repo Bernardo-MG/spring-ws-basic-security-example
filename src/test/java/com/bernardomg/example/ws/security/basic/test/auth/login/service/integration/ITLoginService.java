@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.jdbc.Sql;
 
-import com.bernardomg.example.ws.security.basic.auth.login.model.LoginStatus;
+import com.bernardomg.example.ws.security.basic.auth.login.model.LoginDetails;
 import com.bernardomg.example.ws.security.basic.auth.login.service.LoginService;
 import com.bernardomg.example.ws.security.basic.test.config.annotation.IntegrationTest;
 
@@ -27,7 +27,7 @@ public class ITLoginService {
     @Test
     @DisplayName("An existing user with invalid password doesn't log in")
     public final void testLogin_invalidPassword() {
-        final LoginStatus result;
+        final LoginDetails result;
 
         result = service.login("admin", "abc");
 
@@ -37,7 +37,7 @@ public class ITLoginService {
     @Test
     @DisplayName("A not existing user doesn't log in")
     public final void testLogin_notExisting() {
-        final LoginStatus result;
+        final LoginDetails result;
 
         result = service.login("abc", "1234");
 
@@ -47,7 +47,7 @@ public class ITLoginService {
     @Test
     @DisplayName("An existing user with valid password logs in")
     public final void testLogin_valid() {
-        final LoginStatus result;
+        final LoginDetails result;
 
         result = service.login("admin", "1234");
 
@@ -57,7 +57,7 @@ public class ITLoginService {
     @Test
     @DisplayName("A valid login returns all the data")
     public final void testLogin_valid_data() {
-        final LoginStatus result;
+        final LoginDetails result;
 
         result = service.login("admin", "1234");
 
