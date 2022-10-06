@@ -24,8 +24,6 @@
 
 package com.bernardomg.example.ws.security.basic.auth.login.service;
 
-import java.nio.charset.StandardCharsets;
-import java.util.Base64;
 import java.util.Optional;
 
 import org.springframework.security.core.userdetails.UserDetails;
@@ -36,6 +34,7 @@ import org.springframework.stereotype.Service;
 
 import com.bernardomg.example.ws.security.basic.auth.login.model.ImmutableLoginStatus;
 import com.bernardomg.example.ws.security.basic.auth.login.model.LoginStatus;
+import com.bernardomg.example.ws.security.basic.auth.token.TokenProvider;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -57,6 +56,11 @@ public final class DefaultLoginService implements LoginService {
     private final PasswordEncoder    passwordEncoder;
 
     /**
+     * Token provider, creates authentication tokens.
+     */
+    private final TokenProvider      tokenProvider;
+
+    /**
      * User details service, to find and validate users.
      */
     private final UserDetailsService userDetailsService;
@@ -72,7 +76,7 @@ public final class DefaultLoginService implements LoginService {
         logged = validateUser(username, password);
 
         // Generate token
-        token = generateToken(username, password);
+        token = tokenProvider.generateToken(username, password);
 
         status = new ImmutableLoginStatus(username, logged, token);
 
@@ -81,17 +85,9 @@ public final class DefaultLoginService implements LoginService {
         return status;
     }
 
-    private final String generateToken(final String username, final String password) {
-        final String rawToken;
-
-        rawToken = String.format("%s:%s", username, password);
-        return Base64.getEncoder()
-            .encodeToString(rawToken.getBytes(StandardCharsets.UTF_8));
-    }
-
     /**
      * Checks if the user is valid and allows to attempt a login.
-     * 
+     *
      * @param username
      *            username to authenticate
      * @param password
