@@ -22,32 +22,8 @@
  * SOFTWARE.
  */
 
-package com.bernardomg.example.ws.security.basic.config;
-
-import org.springframework.boot.actuate.audit.AuditEventRepository;
-import org.springframework.boot.actuate.audit.InMemoryAuditEventRepository;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-
 /**
- * Audit configuration.
- *
- * @author Bernardo Mart&iacute;nez Garrido
- *
+ * Token components.
  */
-@Configuration
-public class AuditConfig {
 
-    /**
-     * Default constructor.
-     */
-    public AuditConfig() {
-        super();
-    }
-
-    @Bean("auditEventRepository")
-    public AuditEventRepository getAuditEventRepository() {
-        return new InMemoryAuditEventRepository();
-    }
-
-}
+package com.bernardomg.example.ws.security.basic.auth.basic.token;

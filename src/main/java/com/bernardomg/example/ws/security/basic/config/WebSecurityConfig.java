@@ -46,9 +46,15 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 public class WebSecurityConfig {
 
+    /**
+     * User details service, for acquiring the application users.
+     */
     @Autowired
     private UserDetailsService userDetailsService;
 
+    /**
+     * Default constructor.
+     */
     public WebSecurityConfig() {
         super();
     }

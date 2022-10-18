@@ -51,6 +51,9 @@ import com.bernardomg.example.ws.security.basic.auth.userdetails.PersistentUserD
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true, jsr250Enabled = true)
 public class SecurityConfig {
 
+    /**
+     * Default constructor.
+     */
     public SecurityConfig() {
         super();
     }
