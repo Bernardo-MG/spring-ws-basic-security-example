@@ -480,6 +480,12 @@
          <artifactId>spring-boot-test</artifactId>
          <scope>test</scope>
       </dependency>
+      <dependency>
+         <!-- Spring Boot Test Autoconfigure -->
+         <groupId>org.springframework.boot</groupId>
+         <artifactId>spring-boot-test-autoconfigure</artifactId>
+         <scope>test</scope>
+      </dependency>
    </dependencies>
 
    <!-- ********************************************** -->
