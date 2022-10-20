@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "ed69ca80-c0e4-458b-928f-36147a101e2b",
+		"_postman_id": "d13548f3-0ff7-4fec-85c1-bdcf48029657",
 		"name": "Basic auth",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -27,8 +27,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "/entity",
+							"raw": "/rest/entity",
 							"path": [
+								"rest",
 								"entity"
 							]
 						}
@@ -42,7 +43,7 @@
 					"script": {
 						"type": "text/javascript",
 						"exec": [
-							"pm.request.url=\"http://localhost:8080/rest\"+pm.request.url;"
+							""
 						]
 					}
 				},
@@ -79,8 +80,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "/entity",
+							"raw": "/rest/entity",
 							"path": [
+								"rest",
 								"entity"
 							]
 						}
@@ -109,7 +111,7 @@
 					"script": {
 						"type": "text/javascript",
 						"exec": [
-							"pm.request.url=\"http://localhost:8080/rest\"+pm.request.url;"
+							""
 						]
 					}
 				},
@@ -176,7 +178,7 @@
 					"script": {
 						"type": "text/javascript",
 						"exec": [
-							"pm.request.url=\"http://localhost:8080/rest\"+pm.request.url;"
+							""
 						]
 					}
 				},
@@ -190,6 +192,43 @@
 					}
 				}
 			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"pm.request.url=pm.collectionVariables.get('url')"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "host",
+			"value": "http://localhost",
+			"type": "default"
+		},
+		{
+			"key": "port",
+			"value": "8080",
+			"type": "default"
+		},
+		{
+			"key": "url",
+			"value": "{{host}}:{{port}}",
+			"type": "default"
 		}
 	]
 }
