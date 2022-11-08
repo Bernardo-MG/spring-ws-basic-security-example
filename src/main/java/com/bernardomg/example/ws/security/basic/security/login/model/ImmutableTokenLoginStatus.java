@@ -24,33 +24,50 @@
 
 package com.bernardomg.example.ws.security.basic.security.login.model;
 
+import lombok.Data;
+import lombok.NonNull;
+
 /**
- * Status after a login attempt.
+ * Immutable implementation of {@link TokenLoginStatus}.
  *
  * @author Bernardo Mart&iacute;nez Garrido
  *
  */
-public interface LoginDetails {
+@Data
+public final class ImmutableTokenLoginStatus implements TokenLoginStatus {
 
     /**
-     * Returns if the logging attempt was successful.
-     *
-     * @return {@code true} if the login was successful, {@code false} otherwise
+     * Flag telling if the login was successful.
      */
-    public Boolean getLogged();
+    private final Boolean logged;
 
     /**
-     * Returns the security token.
-     *
-     * @return the security token
+     * Security token.
      */
-    public String getToken();
+    private final String  token;
 
     /**
-     * Returns the username of the user who attempted login.
-     *
-     * @return the username
+     * Username of the user who attempted login.
      */
-    public String getUsername();
+    private final String  username;
+
+    /**
+     * Builds a login status with the specified arguments.
+     *
+     * @param user
+     *            username
+     * @param flag
+     *            logged status
+     * @param tokn
+     *            authentication token
+     */
+    public ImmutableTokenLoginStatus(@NonNull final String user, @NonNull final Boolean flag,
+            @NonNull final String tokn) {
+        super();
+
+        username = user;
+        logged = flag;
+        token = tokn;
+    }
 
 }

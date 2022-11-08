@@ -34,8 +34,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import com.bernardomg.example.ws.security.basic.security.basic.token.BasicTokenProvider;
 import com.bernardomg.example.ws.security.basic.security.login.service.LoginService;
 import com.bernardomg.example.ws.security.basic.security.login.service.TokenLoginService;
-import com.bernardomg.example.ws.security.basic.security.login.validation.CredentialsLoginValidator;
-import com.bernardomg.example.ws.security.basic.security.login.validation.LoginValidator;
 import com.bernardomg.example.ws.security.basic.security.token.TokenProvider;
 import com.bernardomg.example.ws.security.basic.security.user.repository.PrivilegeRepository;
 import com.bernardomg.example.ws.security.basic.security.user.repository.UserRepository;
@@ -61,10 +59,7 @@ public class SecurityConfig {
     @Bean("loginService")
     public LoginService getLoginService(final UserDetailsService userDetailsService,
             final PasswordEncoder passwordEncoder, final TokenProvider tokenProv) {
-        final LoginValidator loginValidator;
-
-        loginValidator = new CredentialsLoginValidator(userDetailsService, passwordEncoder);
-        return new TokenLoginService(tokenProv, loginValidator);
+        return new TokenLoginService(userDetailsService, passwordEncoder, tokenProv);
     }
 
     @Bean("passwordEncoder")

@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.jdbc.Sql;
 
-import com.bernardomg.example.ws.security.basic.security.login.model.LoginDetails;
+import com.bernardomg.example.ws.security.basic.security.login.model.LoginStatus;
 import com.bernardomg.example.ws.security.basic.security.login.service.LoginService;
 import com.bernardomg.example.ws.security.basic.test.config.annotation.IntegrationTest;
 
@@ -26,7 +26,7 @@ public class ITLoginServiceNoPrivileges {
     @Test
     @DisplayName("An existing user can't log in")
     public final void testLogin_valid() {
-        final LoginDetails result;
+        final LoginStatus result;
 
         result = service.login("admin", "1234");
 
