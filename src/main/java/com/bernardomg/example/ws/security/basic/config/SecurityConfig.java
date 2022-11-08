@@ -31,15 +31,15 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import com.bernardomg.example.ws.security.basic.auth.basic.token.BasicTokenProvider;
-import com.bernardomg.example.ws.security.basic.auth.login.service.LoginService;
-import com.bernardomg.example.ws.security.basic.auth.login.service.TokenLoginService;
-import com.bernardomg.example.ws.security.basic.auth.login.validation.CredentialsLoginValidator;
-import com.bernardomg.example.ws.security.basic.auth.login.validation.LoginValidator;
-import com.bernardomg.example.ws.security.basic.auth.token.TokenProvider;
-import com.bernardomg.example.ws.security.basic.auth.user.repository.PrivilegeRepository;
-import com.bernardomg.example.ws.security.basic.auth.user.repository.UserRepository;
-import com.bernardomg.example.ws.security.basic.auth.userdetails.PersistentUserDetailsService;
+import com.bernardomg.example.ws.security.basic.security.basic.token.BasicTokenProvider;
+import com.bernardomg.example.ws.security.basic.security.login.service.LoginService;
+import com.bernardomg.example.ws.security.basic.security.login.service.TokenLoginService;
+import com.bernardomg.example.ws.security.basic.security.login.validation.CredentialsLoginValidator;
+import com.bernardomg.example.ws.security.basic.security.login.validation.LoginValidator;
+import com.bernardomg.example.ws.security.basic.security.token.TokenProvider;
+import com.bernardomg.example.ws.security.basic.security.user.repository.PrivilegeRepository;
+import com.bernardomg.example.ws.security.basic.security.user.repository.UserRepository;
+import com.bernardomg.example.ws.security.basic.security.userdetails.PersistentUserDetailsService;
 
 /**
  * Security configuration.
