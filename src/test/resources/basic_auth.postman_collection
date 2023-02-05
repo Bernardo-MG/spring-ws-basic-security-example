@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "d13548f3-0ff7-4fec-85c1-bdcf48029657",
+		"_postman_id": "73a39f98-fe13-4968-a435-799e69b0383f",
 		"name": "Basic auth",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -172,71 +172,6 @@
 					}
 				]
 			},
-			"event": [
-				{
-					"listen": "prerequest",
-					"script": {
-						"type": "text/javascript",
-						"exec": [
-							""
-						]
-					}
-				},
-				{
-					"listen": "test",
-					"script": {
-						"type": "text/javascript",
-						"exec": [
-							""
-						]
-					}
-				}
-			]
-		},
-		{
-			"name": "Login",
-			"item": [
-				{
-					"name": "Login",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Authorized request\",()=>{\r",
-									"    pm.expect(pm.response.code).to.eql(200);\r",
-									"});\r",
-									"pm.test('Returns token', function() {\r",
-									"  pm.expect(pm.response.json()).to.have.property(\"content\");\r",
-									"  pm.expect(pm.response.json().content).to.have.property(\"token\");\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"username\": \"admin\",\r\n    \"password\": \"1234\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "/login",
-							"path": [
-								"login"
-							]
-						}
-					},
-					"response": []
-				}
-			],
 			"event": [
 				{
 					"listen": "prerequest",

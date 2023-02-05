@@ -32,8 +32,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.bernardomg.example.ws.security.basic.security.basic.token.BasicTokenProvider;
-import com.bernardomg.example.ws.security.basic.security.login.service.LoginService;
-import com.bernardomg.example.ws.security.basic.security.login.service.TokenLoginService;
 import com.bernardomg.example.ws.security.basic.security.token.TokenProvider;
 import com.bernardomg.example.ws.security.basic.security.user.repository.PrivilegeRepository;
 import com.bernardomg.example.ws.security.basic.security.user.repository.UserRepository;
@@ -54,12 +52,6 @@ public class SecurityConfig {
      */
     public SecurityConfig() {
         super();
-    }
-
-    @Bean("loginService")
-    public LoginService getLoginService(final UserDetailsService userDetailsService,
-            final PasswordEncoder passwordEncoder, final TokenProvider tokenProv) {
-        return new TokenLoginService(userDetailsService, passwordEncoder, tokenProv);
     }
 
     @Bean("passwordEncoder")
