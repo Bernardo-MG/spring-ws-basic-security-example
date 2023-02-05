@@ -31,20 +31,25 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import com.bernardomg.example.ws.security.basic.auth.user.repository.PrivilegeRepository;
-import com.bernardomg.example.ws.security.basic.auth.user.repository.UserRepository;
-import com.bernardomg.example.ws.security.basic.auth.userdetails.PersistentUserDetailsService;
+import com.bernardomg.example.ws.security.basic.security.basic.token.BasicTokenProvider;
+import com.bernardomg.example.ws.security.basic.security.token.TokenProvider;
+import com.bernardomg.example.ws.security.basic.security.user.repository.PrivilegeRepository;
+import com.bernardomg.example.ws.security.basic.security.user.repository.UserRepository;
+import com.bernardomg.example.ws.security.basic.security.userdetails.PersistentUserDetailsService;
 
 /**
  * Security configuration.
  *
- * @author Bernardo Martínez Garrido
+ * @author Bernardo Mart&iacute;nez Garrido
  *
  */
 @Configuration
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true, jsr250Enabled = true)
 public class SecurityConfig {
 
+    /**
+     * Default constructor.
+     */
     public SecurityConfig() {
         super();
     }
@@ -52,6 +57,11 @@ public class SecurityConfig {
     @Bean("passwordEncoder")
     public PasswordEncoder getPasswordEncoder() {
         return new BCryptPasswordEncoder();
+    }
+
+    @Bean("tokenProvider")
+    public TokenProvider getTokenProvider() {
+        return new BasicTokenProvider();
     }
 
     @Bean("userDetailsService")
