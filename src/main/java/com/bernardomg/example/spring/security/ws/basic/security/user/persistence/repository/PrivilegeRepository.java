@@ -22,8 +22,33 @@
  * SOFTWARE.
  */
 
-/**
- * User model.
- */
+package com.bernardomg.example.spring.security.ws.basic.security.user.persistence.repository;
 
-package com.bernardomg.example.spring.security.ws.basic.security.user.model;
+import java.util.Collection;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+
+import com.bernardomg.example.spring.security.ws.basic.security.user.persistence.model.PersistentPrivilege;
+
+/**
+ * Repository for privileges.
+ *
+ * @author Bernardo Mart&iacute;nez Garrido
+ *
+ */
+public interface PrivilegeRepository extends JpaRepository<PersistentPrivilege, Long> {
+
+    /**
+     * Returns all the privileges for a user. This requires a join from the user up to the privileges.
+     *
+     * @param id
+     *            user id
+     * @return all the privileges for the user
+     */
+    @Query(value = "SELECT p.* FROM privileges p JOIN role_privileges rp ON p.id = rp.privilege_id JOIN roles r ON r.id = rp.role_id JOIN user_roles ur ON r.id = ur.role_id JOIN users u ON u.id = ur.user_id WHERE u.id = :id",
+            nativeQuery = true)
+    public Collection<PersistentPrivilege> findForUser(@Param("id") final Long id);
+
+}

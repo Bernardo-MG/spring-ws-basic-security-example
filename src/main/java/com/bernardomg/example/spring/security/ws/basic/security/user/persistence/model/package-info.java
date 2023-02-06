@@ -22,25 +22,8 @@
  * SOFTWARE.
  */
 
-package com.bernardomg.example.spring.security.ws.basic.mvc.error.model;
-
 /**
- * Failure object. Containing a message to tell which error ocurred.
- *
- * @author Bernardo Mart&iacute;nez Garrido
- *
+ * User model.
  */
-public interface Failure {
 
-    public static Failure of(final String code) {
-        return new ImmutableFailure(code);
-    }
-
-    /**
-     * Returns the error message.
-     *
-     * @return the error message.
-     */
-    public String getMessage();
-
-}
+package com.bernardomg.example.spring.security.ws.basic.security.user.persistence.model;

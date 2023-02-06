@@ -26,4 +26,4 @@
  * User repositories.
  */
 
-package com.bernardomg.example.spring.security.ws.basic.security.user.repository;
+package com.bernardomg.example.spring.security.ws.basic.security.user.persistence.repository;

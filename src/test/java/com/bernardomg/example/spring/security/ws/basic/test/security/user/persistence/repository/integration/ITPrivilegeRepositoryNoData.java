@@ -1,13 +1,13 @@
 
-package com.bernardomg.example.spring.security.ws.basic.test.security.user.repository.integration;
+package com.bernardomg.example.spring.security.ws.basic.test.security.user.persistence.repository.integration;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.bernardomg.example.spring.security.ws.basic.security.user.model.PersistentPrivilege;
-import com.bernardomg.example.spring.security.ws.basic.security.user.repository.PrivilegeRepository;
+import com.bernardomg.example.spring.security.ws.basic.security.user.persistence.model.PersistentPrivilege;
+import com.bernardomg.example.spring.security.ws.basic.security.user.persistence.repository.PrivilegeRepository;
 import com.bernardomg.example.spring.security.ws.basic.test.config.annotation.IntegrationTest;
 
 import liquibase.repackaged.org.apache.commons.collections4.IterableUtils;

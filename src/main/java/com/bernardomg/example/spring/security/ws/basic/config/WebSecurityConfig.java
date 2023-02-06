@@ -35,8 +35,9 @@ import org.springframework.security.config.annotation.web.configurers.FormLoginC
 import org.springframework.security.config.annotation.web.configurers.LogoutConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.SecurityFilterChain;
+
+import com.bernardomg.example.spring.security.ws.basic.security.entrypoint.ErrorResponseAuthenticationEntryPoint;
 
 /**
  * Web security configuration.
@@ -49,16 +50,10 @@ import org.springframework.security.web.SecurityFilterChain;
 public class WebSecurityConfig {
 
     /**
-     * Authentication entry point.
-     */
-    @Autowired
-    private AuthenticationEntryPoint authenticationEntryPoint;
-
-    /**
      * User details service, for acquiring the application users.
      */
     @Autowired
-    private UserDetailsService       userDetailsService;
+    private UserDetailsService userDetailsService;
 
     /**
      * Default constructor.
@@ -67,17 +62,30 @@ public class WebSecurityConfig {
         super();
     }
 
-    @Bean
-    public SecurityFilterChain filterChain(final HttpSecurity http) throws Exception {
+    /**
+     * Web security filter chain. Sets up all the authentication requirements for requests.
+     *
+     * @param http
+     *            HTTP security component
+     * @return web security filter chain with all authentication requirements
+     * @throws Exception
+     *             if the setup fails
+     */
+    @Bean("webSecurityFilterChain")
+    public SecurityFilterChain getWebSecurityFilterChain(final HttpSecurity http) throws Exception {
         final Customizer<ExpressionUrlAuthorizationConfigurer<HttpSecurity>.ExpressionInterceptUrlRegistry> authorizeRequestsCustomizer;
         final Customizer<FormLoginConfigurer<HttpSecurity>>                                                 formLoginCustomizer;
         final Customizer<LogoutConfigurer<HttpSecurity>>                                                    logoutCustomizer;
 
-        // Authorization
+        // Request authorisations
         authorizeRequestsCustomizer = getAuthorizeRequestsCustomizer();
+
         // Login form
+        // Disabled
         formLoginCustomizer = c -> c.disable();
-        // Logout
+
+        // Logout form
+        // Disabled
         logoutCustomizer = c -> c.disable();
 
         http.csrf()
@@ -95,6 +103,11 @@ public class WebSecurityConfig {
         return http.build();
     }
 
+    /**
+     * Returns the request authorisation configuration.
+     *
+     * @return the request authorisation configuration
+     */
     private final Customizer<ExpressionUrlAuthorizationConfigurer<HttpSecurity>.ExpressionInterceptUrlRegistry>
             getAuthorizeRequestsCustomizer() {
         return c -> {
@@ -103,13 +116,15 @@ public class WebSecurityConfig {
                     .permitAll()
                     .anyRequest()
                     .authenticated()
+                    // Authentication error handling
                     .and()
                     .exceptionHandling()
-                    .authenticationEntryPoint(authenticationEntryPoint)
+                    .authenticationEntryPoint(new ErrorResponseAuthenticationEntryPoint())
+                    // Stateless
                     .and()
                     .sessionManagement()
                     .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-            } catch (Exception e) {
+            } catch (final Exception e) {
                 // TODO Handle exception
                 throw new RuntimeException(e);
             }

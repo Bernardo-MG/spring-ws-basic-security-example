@@ -47,7 +47,7 @@ import lombok.extern.slf4j.Slf4j;
  * @author Bernardo Mart&iacute;nez Garrido
  *
  */
-@ControllerAdvice("com.bernardomg.example.ws")
+@ControllerAdvice("com.bernardomg.example.spring.security.ws")
 @Slf4j
 public class ResponseAdvice implements ResponseBodyAdvice<Object> {
 

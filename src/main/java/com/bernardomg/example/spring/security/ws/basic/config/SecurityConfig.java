@@ -30,11 +30,9 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.AuthenticationEntryPoint;
 
-import com.bernardomg.example.spring.security.ws.basic.security.entrypoint.ErrorResponseAuthenticationEntryPoint;
-import com.bernardomg.example.spring.security.ws.basic.security.user.repository.PrivilegeRepository;
-import com.bernardomg.example.spring.security.ws.basic.security.user.repository.UserRepository;
+import com.bernardomg.example.spring.security.ws.basic.security.user.persistence.repository.PrivilegeRepository;
+import com.bernardomg.example.spring.security.ws.basic.security.user.persistence.repository.UserRepository;
 import com.bernardomg.example.spring.security.ws.basic.security.userdetails.PersistentUserDetailsService;
 
 /**
@@ -54,16 +52,25 @@ public class SecurityConfig {
         super();
     }
 
-    @Bean("authenticationEntryPoint")
-    public AuthenticationEntryPoint getAuthenticationEntryPoint() {
-        return new ErrorResponseAuthenticationEntryPoint();
-    }
-
+    /**
+     * Password encoder. Used to match the received password to the one securely stored in the DB.
+     *
+     * @return the password encoder
+     */
     @Bean("passwordEncoder")
     public PasswordEncoder getPasswordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
+    /**
+     * User details service. Will take care of finding registered users.
+     *
+     * @param userRepository
+     *            repository for finding users
+     * @param privilegeRepository
+     *            repository for finding user privileges
+     * @return the user details service
+     */
     @Bean("userDetailsService")
     public UserDetailsService getUserDetailsService(final UserRepository userRepository,
             final PrivilegeRepository privilegeRepository) {

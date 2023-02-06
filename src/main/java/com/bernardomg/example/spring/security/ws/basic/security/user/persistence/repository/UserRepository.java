@@ -22,13 +22,13 @@
  * SOFTWARE.
  */
 
-package com.bernardomg.example.spring.security.ws.basic.security.user.repository;
+package com.bernardomg.example.spring.security.ws.basic.security.user.persistence.repository;
 
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.bernardomg.example.spring.security.ws.basic.security.user.model.PersistentUser;
+import com.bernardomg.example.spring.security.ws.basic.security.user.persistence.model.PersistentUser;
 
 /**
  * Repository for users.

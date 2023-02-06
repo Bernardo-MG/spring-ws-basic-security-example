@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-package com.bernardomg.example.spring.security.ws.basic.security.user.model;
+package com.bernardomg.example.spring.security.ws.basic.security.user.persistence.model;
 
 import java.io.Serializable;
 
@@ -38,7 +38,10 @@ import javax.persistence.Transient;
 import lombok.Data;
 
 /**
- * Dto implementation of {@code User}.
+ * Persistent user data.
+ * <p>
+ * JPA entities shouldn't end mixed up with the domain model. For this reason this class won't extend any generic
+ * interface, and instead is a JPA POJO.
  *
  * @author Bernardo Mart&iacute;nez Garrido
  *
