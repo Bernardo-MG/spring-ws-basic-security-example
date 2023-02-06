@@ -33,7 +33,9 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configurers.ExpressionUrlAuthorizationConfigurer;
 import org.springframework.security.config.annotation.web.configurers.FormLoginConfigurer;
 import org.springframework.security.config.annotation.web.configurers.LogoutConfigurer;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.SecurityFilterChain;
 
 /**
@@ -47,10 +49,16 @@ import org.springframework.security.web.SecurityFilterChain;
 public class WebSecurityConfig {
 
     /**
+     * Authentication entry point.
+     */
+    @Autowired
+    private AuthenticationEntryPoint authenticationEntryPoint;
+
+    /**
      * User details service, for acquiring the application users.
      */
     @Autowired
-    private UserDetailsService userDetailsService;
+    private UserDetailsService       userDetailsService;
 
     /**
      * Default constructor.
@@ -66,10 +74,7 @@ public class WebSecurityConfig {
         final Customizer<LogoutConfigurer<HttpSecurity>>                                                    logoutCustomizer;
 
         // Authorization
-        authorizeRequestsCustomizer = c -> c.antMatchers("/actuator/**", "/login/**")
-            .permitAll()
-            .anyRequest()
-            .authenticated();
+        authorizeRequestsCustomizer = getAuthorizeRequestsCustomizer();
         // Login form
         formLoginCustomizer = c -> c.disable();
         // Logout
@@ -88,6 +93,27 @@ public class WebSecurityConfig {
         http.userDetailsService(userDetailsService);
 
         return http.build();
+    }
+
+    private final Customizer<ExpressionUrlAuthorizationConfigurer<HttpSecurity>.ExpressionInterceptUrlRegistry>
+            getAuthorizeRequestsCustomizer() {
+        return c -> {
+            try {
+                c.antMatchers("/actuator/**", "/login/**")
+                    .permitAll()
+                    .anyRequest()
+                    .authenticated()
+                    .and()
+                    .exceptionHandling()
+                    .authenticationEntryPoint(authenticationEntryPoint)
+                    .and()
+                    .sessionManagement()
+                    .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+            } catch (Exception e) {
+                // TODO Handle exception
+                throw new RuntimeException(e);
+            }
+        };
     }
 
 }
