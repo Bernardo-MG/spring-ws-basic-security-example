@@ -30,9 +30,9 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.AuthenticationEntryPoint;
 
-import com.bernardomg.example.ws.security.basic.security.basic.token.BasicTokenProvider;
-import com.bernardomg.example.ws.security.basic.security.token.TokenProvider;
+import com.bernardomg.example.ws.security.basic.security.entrypoint.ErrorResponseAuthenticationEntryPoint;
 import com.bernardomg.example.ws.security.basic.security.user.repository.PrivilegeRepository;
 import com.bernardomg.example.ws.security.basic.security.user.repository.UserRepository;
 import com.bernardomg.example.ws.security.basic.security.userdetails.PersistentUserDetailsService;
@@ -54,14 +54,14 @@ public class SecurityConfig {
         super();
     }
 
+    @Bean("authenticationEntryPoint")
+    public AuthenticationEntryPoint getAuthenticationEntryPoint() {
+        return new ErrorResponseAuthenticationEntryPoint();
+    }
+
     @Bean("passwordEncoder")
     public PasswordEncoder getPasswordEncoder() {
         return new BCryptPasswordEncoder();
-    }
-
-    @Bean("tokenProvider")
-    public TokenProvider getTokenProvider() {
-        return new BasicTokenProvider();
     }
 
     @Bean("userDetailsService")
