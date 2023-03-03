@@ -24,7 +24,6 @@
 
 package com.bernardomg.example.spring.security.ws.basic.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
@@ -50,12 +49,6 @@ import com.bernardomg.example.spring.security.ws.basic.security.entrypoint.Error
 public class WebSecurityConfig {
 
     /**
-     * User details service, for acquiring the application users.
-     */
-    @Autowired
-    private UserDetailsService userDetailsService;
-
-    /**
      * Default constructor.
      */
     public WebSecurityConfig() {
@@ -67,12 +60,15 @@ public class WebSecurityConfig {
      *
      * @param http
      *            HTTP security component
+     * @param userDetailsService
+     *            user details service
      * @return web security filter chain with all authentication requirements
      * @throws Exception
      *             if the setup fails
      */
     @Bean("webSecurityFilterChain")
-    public SecurityFilterChain getWebSecurityFilterChain(final HttpSecurity http) throws Exception {
+    public SecurityFilterChain getWebSecurityFilterChain(final HttpSecurity http,
+            final UserDetailsService userDetailsService) throws Exception {
         final Customizer<ExpressionUrlAuthorizationConfigurer<HttpSecurity>.ExpressionInterceptUrlRegistry> authorizeRequestsCustomizer;
         final Customizer<FormLoginConfigurer<HttpSecurity>>                                                 formLoginCustomizer;
         final Customizer<LogoutConfigurer<HttpSecurity>>                                                    logoutCustomizer;
