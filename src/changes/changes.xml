@@ -35,5 +35,10 @@
             Cleaned up code to make all the security examples more similar.
          </action>
       </release>
+      <release version="1.2.2" date="2023-04-19" description="Login">
+         <action dev="bmg" type="add">
+            Recovered login.
+         </action>
+      </release>
    </body>
 </document>

@@ -1,7 +1,7 @@
 /**
  * The MIT License (MIT)
  * <p>
- * Copyright (c) 2022-2023 the original author or authors.
+ * Copyright (c) 2022 the original author or authors.
  * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,24 +22,41 @@
  * SOFTWARE.
  */
 
-package com.bernardomg.example.spring.security.ws.basic.mvc.response.model;
+package com.bernardomg.example.spring.security.ws.basic.login.model;
 
-import java.util.Collection;
-
-import com.bernardomg.example.spring.security.ws.basic.mvc.error.model.Error;
+import lombok.Data;
+import lombok.NonNull;
 
 /**
- * Error response to the frontend.
+ * Immutable implementation of {@link LoginStatus}.
  *
  * @author Bernardo Mart&iacute;nez Garrido
+ *
  */
-public interface ErrorResponse {
+@Data
+public final class ImmutableLoginStatus implements LoginStatus {
 
     /**
-     * Returns all the errors caused by the request.
-     *
-     * @return request errors
+     * Logged in flag.
      */
-    public Collection<Error> getErrors();
+    private final Boolean logged;
+
+    /**
+     * Authentication token.
+     */
+    private final String  token;
+
+    /**
+     * Logged in user username.
+     */
+    private final String  username;
+
+    public ImmutableLoginStatus(@NonNull final String usnm, @NonNull final Boolean lgd, @NonNull final String tkn) {
+        super();
+
+        username = usnm;
+        logged = lgd;
+        token = tkn;
+    }
 
 }

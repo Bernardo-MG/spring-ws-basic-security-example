@@ -1,7 +1,7 @@
 /**
  * The MIT License (MIT)
  * <p>
- * Copyright (c) 2022-2023 the original author or authors.
+ * Copyright (c) 2022 the original author or authors.
  * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,24 +22,35 @@
  * SOFTWARE.
  */
 
-package com.bernardomg.example.spring.security.ws.basic.mvc.response.model;
-
-import java.util.Collection;
-
-import com.bernardomg.example.spring.security.ws.basic.mvc.error.model.Error;
+package com.bernardomg.example.spring.security.ws.basic.login.model;
 
 /**
- * Error response to the frontend.
+ * Status after a login attempt.
  *
  * @author Bernardo Mart&iacute;nez Garrido
+ *
  */
-public interface ErrorResponse {
+public interface LoginStatus {
 
     /**
-     * Returns all the errors caused by the request.
+     * Returns if the logging attempt was successful.
      *
-     * @return request errors
+     * @return {@code true} if the login was successful, {@code false} otherwise
      */
-    public Collection<Error> getErrors();
+    public Boolean getLogged();
+
+    /**
+     * Returns the security token.
+     *
+     * @return the security token
+     */
+    public String getToken();
+
+    /**
+     * Returns the username of the user who attempted login.
+     *
+     * @return the username
+     */
+    public String getUsername();
 
 }

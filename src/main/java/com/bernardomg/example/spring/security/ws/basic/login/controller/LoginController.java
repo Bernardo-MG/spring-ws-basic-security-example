@@ -1,7 +1,7 @@
 /**
  * The MIT License (MIT)
  * <p>
- * Copyright (c) 2022-2023 the original author or authors.
+ * Copyright (c) 2022 the original author or authors.
  * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,24 +22,45 @@
  * SOFTWARE.
  */
 
-package com.bernardomg.example.spring.security.ws.basic.mvc.response.model;
+package com.bernardomg.example.spring.security.ws.basic.login.controller;
 
-import java.util.Collection;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import com.bernardomg.example.spring.security.ws.basic.mvc.error.model.Error;
+import com.bernardomg.example.spring.security.ws.basic.login.model.LoginStatus;
+import com.bernardomg.example.spring.security.ws.basic.login.model.UserForm;
+import com.bernardomg.example.spring.security.ws.basic.login.service.LoginService;
+
+import lombok.AllArgsConstructor;
 
 /**
- * Error response to the frontend.
+ * Login controller. Allows a user to log into the application.
  *
  * @author Bernardo Mart&iacute;nez Garrido
+ *
  */
-public interface ErrorResponse {
+@RestController
+@RequestMapping("/login")
+@AllArgsConstructor
+public class LoginController {
 
     /**
-     * Returns all the errors caused by the request.
-     *
-     * @return request errors
+     * Login service.
      */
-    public Collection<Error> getErrors();
+    private final LoginService service;
+
+    /**
+     * Logs in a user.
+     *
+     * @param user
+     *            user details
+     * @return the login status after the login attempt
+     */
+    @PostMapping
+    public LoginStatus login(@RequestBody final UserForm user) {
+        return service.login(user.getUsername(), user.getPassword());
+    }
 
 }

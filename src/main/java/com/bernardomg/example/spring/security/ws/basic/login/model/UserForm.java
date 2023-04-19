@@ -1,7 +1,7 @@
 /**
  * The MIT License (MIT)
  * <p>
- * Copyright (c) 2022-2023 the original author or authors.
+ * Copyright (c) 2022 the original author or authors.
  * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,24 +22,27 @@
  * SOFTWARE.
  */
 
-package com.bernardomg.example.spring.security.ws.basic.mvc.response.model;
+package com.bernardomg.example.spring.security.ws.basic.login.model;
 
-import java.util.Collection;
-
-import com.bernardomg.example.spring.security.ws.basic.mvc.error.model.Error;
+import lombok.Data;
 
 /**
- * Error response to the frontend.
+ * Contains all the data for a login attempt.
  *
  * @author Bernardo Mart&iacute;nez Garrido
+ *
  */
-public interface ErrorResponse {
+@Data
+public class UserForm {
 
     /**
-     * Returns all the errors caused by the request.
-     *
-     * @return request errors
+     * User password.
      */
-    public Collection<Error> getErrors();
+    private String password;
+
+    /**
+     * User username.
+     */
+    private String username;
 
 }

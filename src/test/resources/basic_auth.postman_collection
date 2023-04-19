@@ -1,7 +1,8 @@
 {
 	"info": {
-		"_postman_id": "a29fbd24-673a-4187-a1b8-3f429c26852f",
+		"_postman_id": "b05c67a1-9e73-45f7-9e14-992c9c80d4a2",
 		"name": "Basic auth",
+		"description": "Requests using the basic HTTP authentication scheme. Which means sending the user and password hashed in the header.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -43,6 +44,7 @@
 					"response": []
 				}
 			],
+			"description": "Unauthorized requests. These are using no authentication.",
 			"event": [
 				{
 					"listen": "prerequest",
@@ -102,6 +104,7 @@
 					"response": []
 				}
 			],
+			"description": "Requests using the wrong authentication scheme. To make sure the server doesn't support them.",
 			"auth": {
 				"type": "bearer",
 				"bearer": [
@@ -170,6 +173,7 @@
 					"response": []
 				}
 			],
+			"description": "Authorized requests. These check the server handles the authorization scheme.",
 			"auth": {
 				"type": "basic",
 				"basic": [
@@ -243,6 +247,7 @@
 					"response": []
 				}
 			],
+			"description": "Authorized without privileges. In this case these requests cause an authorization error, as the user is authenticated but lacks permissions.",
 			"auth": {
 				"type": "basic",
 				"basic": [
