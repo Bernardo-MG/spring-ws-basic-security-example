@@ -86,7 +86,7 @@ public class ExampleEntityController {
      * @return all the entities
      */
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public Iterable<? extends ExampleEntity> read() {
+    public Iterable<ExampleEntity> read() {
         return exampleEntityService.getAll();
     }
 
