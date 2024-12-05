@@ -31,6 +31,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.CsrfConfigurer;
+import org.springframework.security.config.annotation.web.configurers.FormLoginConfigurer;
+import org.springframework.security.config.annotation.web.configurers.LogoutConfigurer;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.SecurityFilterChain;
 
@@ -70,10 +73,10 @@ public class WebSecurityConfig {
         http
             // Whitelist access
             .authorizeHttpRequests(new WhitelistRequestCustomizer(Arrays.asList("/actuator/**", "/login/**")))
-            .csrf(csrf -> csrf.disable())
+            .csrf(CsrfConfigurer::disable)
             .cors(cors -> {})
-            .formLogin(c -> c.disable())
-            .logout(c -> c.disable())
+            .formLogin(FormLoginConfigurer::disable)
+            .logout(LogoutConfigurer::disable)
             // Activates HTTP Basic authentication
             .httpBasic(Customizer.withDefaults());
 
