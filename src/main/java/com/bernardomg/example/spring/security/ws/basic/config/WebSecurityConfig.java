@@ -24,19 +24,17 @@
 
 package com.bernardomg.example.spring.security.ws.basic.config;
 
+import java.util.Arrays;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configurers.AuthorizeHttpRequestsConfigurer;
-import org.springframework.security.config.annotation.web.configurers.FormLoginConfigurer;
-import org.springframework.security.config.annotation.web.configurers.LogoutConfigurer;
-import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.SecurityFilterChain;
 
-import com.bernardomg.example.spring.security.ws.basic.security.entrypoint.ErrorResponseAuthenticationEntryPoint;
+import com.bernardomg.example.spring.security.ws.basic.security.configuration.WhitelistRequestCustomizer;
 
 /**
  * Web security configuration.
@@ -69,62 +67,19 @@ public class WebSecurityConfig {
     @Bean("webSecurityFilterChain")
     public SecurityFilterChain getWebSecurityFilterChain(final HttpSecurity http,
             final UserDetailsService userDetailsService) throws Exception {
-        final Customizer<AuthorizeHttpRequestsConfigurer<HttpSecurity>.AuthorizationManagerRequestMatcherRegistry> authorizeRequestsCustomizer;
-        final Customizer<FormLoginConfigurer<HttpSecurity>>                                                        formLoginCustomizer;
-        final Customizer<LogoutConfigurer<HttpSecurity>>                                                           logoutCustomizer;
-
-        // Request authorisations
-        authorizeRequestsCustomizer = getAuthorizeRequestsCustomizer();
-
-        // Login form
-        // Disabled
-        formLoginCustomizer = c -> c.disable();
-
-        // Logout form
-        // Disabled
-        logoutCustomizer = c -> c.disable();
-
-        http.csrf()
-            .disable()
-            .cors()
-            .and()
-            .authorizeHttpRequests(authorizeRequestsCustomizer)
-            .formLogin(formLoginCustomizer)
-            .logout(logoutCustomizer)
+        http
+            // Whitelist access
+            .authorizeHttpRequests(new WhitelistRequestCustomizer(Arrays.asList("/actuator/**", "/login/**")))
+            .csrf(csrf -> csrf.disable())
+            .cors(cors -> {})
+            .formLogin(c -> c.disable())
+            .logout(c -> c.disable())
             // Activates HTTP Basic authentication
-            .httpBasic();
+            .httpBasic(Customizer.withDefaults());
 
         http.userDetailsService(userDetailsService);
 
         return http.build();
-    }
-
-    /**
-     * Returns the request authorisation configuration.
-     *
-     * @return the request authorisation configuration
-     */
-    private final Customizer<AuthorizeHttpRequestsConfigurer<HttpSecurity>.AuthorizationManagerRequestMatcherRegistry>
-            getAuthorizeRequestsCustomizer() {
-        return c -> {
-            try {
-                c.requestMatchers("/actuator/**", "/login/**")
-                    .permitAll()
-                    .anyRequest()
-                    .authenticated()
-                    // Authentication error handling
-                    .and()
-                    .exceptionHandling()
-                    .authenticationEntryPoint(new ErrorResponseAuthenticationEntryPoint())
-                    // Stateless
-                    .and()
-                    .sessionManagement()
-                    .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-            } catch (final Exception e) {
-                // TODO Handle exception
-                throw new RuntimeException(e);
-            }
-        };
     }
 
 }
