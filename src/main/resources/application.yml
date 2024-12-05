@@ -3,14 +3,19 @@
 ###############################################################################
 
 # Development options
-# debug=true
+# debug: true
 
-# AOP
-spring.aop.proxy-target-class=false
-
-# Actuators
+spring:
+  # AOP
+  aop:
+    proxy-target-class: false
 
 # Audit
-management.endpoints.web.exposure.include=auditevents
-management.endpoints.enabled-by-default=false
-management.endpoint.auditevents.enabled=true
+management:
+  endpoints:
+    web:
+      exposure:
+        include: auditevents
+    enabled-by-default: false
+    auditevents:
+      enabled: true
