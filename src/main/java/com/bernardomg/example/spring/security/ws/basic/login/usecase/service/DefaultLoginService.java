@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-package com.bernardomg.example.spring.security.ws.basic.login.service;
+package com.bernardomg.example.spring.security.ws.basic.login.usecase.service;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
@@ -34,8 +34,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.bernardomg.example.spring.security.ws.basic.login.model.ImmutableLoginStatus;
-import com.bernardomg.example.spring.security.ws.basic.login.model.LoginStatus;
+import com.bernardomg.example.spring.security.ws.basic.login.domain.model.LoginStatus;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -94,7 +93,7 @@ public final class DefaultLoginService implements LoginService {
         // Generate token
         token = generateToken(username, password);
 
-        status = new ImmutableLoginStatus(username, logged, token);
+        status = new LoginStatus(username, logged, token);
 
         log.debug("Finished log in attempt for {}. Logged in: {}", username, logged);
 

@@ -22,27 +22,27 @@
  * SOFTWARE.
  */
 
-package com.bernardomg.example.spring.security.ws.basic.login.model;
+package com.bernardomg.example.spring.security.ws.basic.login.usecase.service;
 
-import lombok.Data;
+import com.bernardomg.example.spring.security.ws.basic.login.domain.model.LoginStatus;
 
 /**
- * Contains all the data for a login attempt.
+ * Login service. Takes the user credentials and returns a token.
  *
  * @author Bernardo Mart&iacute;nez Garrido
  *
  */
-@Data
-public class UserForm {
+public interface LoginService {
 
     /**
-     * User password.
+     * Receives credentials and returns the login status. If it was valid then it contains a token.
+     *
+     * @param username
+     *            username to authenticate
+     * @param password
+     *            password to authenticate
+     * @return login status
      */
-    private String password;
-
-    /**
-     * User username.
-     */
-    private String username;
+    public LoginStatus login(final String username, final String password);
 
 }

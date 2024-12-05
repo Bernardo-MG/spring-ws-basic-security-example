@@ -22,35 +22,45 @@
  * SOFTWARE.
  */
 
-package com.bernardomg.example.spring.security.ws.basic.login.model;
+package com.bernardomg.example.spring.security.ws.basic.login.adapter.outbound.rest.controller;
+
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.bernardomg.example.spring.security.ws.basic.login.adapter.outbound.rest.model.UserForm;
+import com.bernardomg.example.spring.security.ws.basic.login.domain.model.LoginStatus;
+import com.bernardomg.example.spring.security.ws.basic.login.usecase.service.LoginService;
+
+import lombok.AllArgsConstructor;
 
 /**
- * Status after a login attempt.
+ * Login controller. Allows a user to log into the application.
  *
  * @author Bernardo Mart&iacute;nez Garrido
  *
  */
-public interface LoginStatus {
+@RestController
+@RequestMapping("/login")
+@AllArgsConstructor
+public class LoginController {
 
     /**
-     * Returns if the logging attempt was successful.
-     *
-     * @return {@code true} if the login was successful, {@code false} otherwise
+     * Login service.
      */
-    public Boolean getLogged();
+    private final LoginService service;
 
     /**
-     * Returns the security token.
+     * Logs in a user.
      *
-     * @return the security token
+     * @param user
+     *            user details
+     * @return the login status after the login attempt
      */
-    public String getToken();
-
-    /**
-     * Returns the username of the user who attempted login.
-     *
-     * @return the username
-     */
-    public String getUsername();
+    @PostMapping
+    public LoginStatus login(@RequestBody final UserForm user) {
+        return service.login(user.username(), user.password());
+    }
 
 }

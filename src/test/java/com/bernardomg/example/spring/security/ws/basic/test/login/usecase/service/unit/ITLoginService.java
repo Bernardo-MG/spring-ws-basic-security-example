@@ -1,5 +1,5 @@
 
-package com.bernardomg.example.spring.security.ws.basic.test.login.integration.service;
+package com.bernardomg.example.spring.security.ws.basic.test.login.usecase.service.unit;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -7,8 +7,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.jdbc.Sql;
 
-import com.bernardomg.example.spring.security.ws.basic.login.model.LoginStatus;
-import com.bernardomg.example.spring.security.ws.basic.login.service.LoginService;
+import com.bernardomg.example.spring.security.ws.basic.login.domain.model.LoginStatus;
+import com.bernardomg.example.spring.security.ws.basic.login.usecase.service.LoginService;
 import com.bernardomg.example.spring.security.ws.basic.test.config.annotation.IntegrationTest;
 
 @IntegrationTest
@@ -30,7 +30,7 @@ public class ITLoginService {
 
         result = service.login("admin", "abc");
 
-        Assertions.assertFalse(result.getLogged());
+        Assertions.assertFalse(result.logged());
     }
 
     @Test
@@ -40,7 +40,7 @@ public class ITLoginService {
 
         result = service.login("abc", "1234");
 
-        Assertions.assertFalse(result.getLogged());
+        Assertions.assertFalse(result.logged());
     }
 
     @Test
@@ -50,7 +50,7 @@ public class ITLoginService {
 
         result = service.login("admin", "1234");
 
-        Assertions.assertTrue(result.getLogged());
+        Assertions.assertTrue(result.logged());
     }
 
     @Test
@@ -60,8 +60,8 @@ public class ITLoginService {
 
         result = service.login("admin", "1234");
 
-        Assertions.assertEquals("admin", result.getUsername());
-        Assertions.assertEquals("YWRtaW46MTIzNA==", result.getToken());
+        Assertions.assertEquals("admin", result.username());
+        Assertions.assertEquals("YWRtaW46MTIzNA==", result.token());
     }
 
 }

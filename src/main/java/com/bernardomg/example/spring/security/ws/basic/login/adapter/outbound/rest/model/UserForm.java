@@ -22,8 +22,14 @@
  * SOFTWARE.
  */
 
-/**
- * Login model.
- */
+package com.bernardomg.example.spring.security.ws.basic.login.adapter.outbound.rest.model;
 
-package com.bernardomg.example.spring.security.ws.basic.login.controller;
+/**
+ * Contains all the data for a login attempt.
+ *
+ * @author Bernardo Mart&iacute;nez Garrido
+ *
+ */
+public record UserForm(String username, String password) {
+
+}

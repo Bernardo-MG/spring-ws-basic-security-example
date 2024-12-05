@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-package com.bernardomg.example.spring.security.ws.basic.test.login.integration.controller;
+package com.bernardomg.example.spring.security.ws.basic.test.login.adapter.outbound.rest.controller.integration;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

@@ -23,7 +23,7 @@
  */
 
 /**
- * Login services.
+ * Login controller model.
  */
 
-package com.bernardomg.example.spring.security.ws.basic.login.service;
+package com.bernardomg.example.spring.security.ws.basic.login.adapter.outbound.rest.model;

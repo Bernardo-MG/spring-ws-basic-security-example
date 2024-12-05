@@ -1,0 +1,102 @@
+2024-12-05T23:05:19,195 INFO  [restartedMain] c.b.e.s.s.w.b.Application.logStarting(53): Starting Application using Java 21.0.4 with PID 16536 (D:\repositories\spring-ws-basic-security-example\target\classes started by Bernardo in D:\repositories\spring-ws-basic-security-example)
+2024-12-05T23:05:19,206 DEBUG [restartedMain] c.b.e.s.s.w.b.Application.logStarting(54): Running with Spring Boot v3.4.0, Spring v6.2.0
+2024-12-05T23:05:19,208 INFO  [restartedMain] c.b.e.s.s.w.b.Application.logStartupProfileInfo(652): No active profile set, falling back to 1 default profile: "default"
+2024-12-05T23:05:24,986 WARN  [restartedMain] o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration.openEntityManagerInViewInterceptor(241): spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-12-05T23:05:26,391 INFO  [restartedMain] c.b.e.s.s.w.b.Application.logStarted(59): Started Application in 7.695 seconds (process running for 8.657)
+2024-12-05T23:09:44,571 DEBUG [http-nio-8080-exec-2] c.b.e.s.s.w.b.s.a.AuditEventLogger.auditEventHappened(94): Audit event AUTHORIZATION_FAILURE for anonymousUser from address 0:0:0:0:0:0:0:1
+2024-12-05T23:09:44,593 DEBUG [http-nio-8080-exec-2] c.b.e.s.s.w.b.s.a.AuditEventLogger.auditEventHappened(94): Audit event AUTHORIZATION_FAILURE for anonymousUser with session id E1E20214398AEFAC3C42B5562BE1F338 from address 0:0:0:0:0:0:0:1
+2024-12-05T23:10:03,228 DEBUG [http-nio-8080-exec-3] c.b.e.s.s.w.b.s.a.AuditEventLogger.auditEventHappened(94): Audit event AUTHORIZATION_FAILURE for anonymousUser with session id E1E20214398AEFAC3C42B5562BE1F338 from address 0:0:0:0:0:0:0:1
+2024-12-05T23:10:03,233 DEBUG [http-nio-8080-exec-3] c.b.e.s.s.w.b.s.a.AuditEventLogger.auditEventHappened(94): Audit event AUTHORIZATION_FAILURE for anonymousUser with session id E1E20214398AEFAC3C42B5562BE1F338 from address 0:0:0:0:0:0:0:1
+2024-12-05T23:10:12,539 DEBUG [http-nio-8080-exec-4] c.b.e.s.s.w.b.s.u.PersistentUserDetailsService.loadUserByUsername(125): User admin exists
+2024-12-05T23:10:12,539 DEBUG [http-nio-8080-exec-4] c.b.e.s.s.w.b.s.u.PersistentUserDetailsService.loadUserByUsername(126): Authorities for admin: [CREATE_DATA, DELETE_DATA, READ_DATA, UPDATE_DATA]
+2024-12-05T23:10:12,541 DEBUG [http-nio-8080-exec-4] c.b.e.s.s.w.b.s.u.PersistentUserDetailsService.loadUserByUsername(127): User flags for admin. Enabled: true. Non expired: true. Non locked: true. Credentials non expired: true
+2024-12-05T23:10:12,544 DEBUG [http-nio-8080-exec-4] c.b.e.s.s.w.b.s.a.AuditEventLogger.auditEventHappened(94): Audit event AUTHENTICATION_SUCCESS for admin with session id E1E20214398AEFAC3C42B5562BE1F338 from address 0:0:0:0:0:0:0:1
+2024-12-05T23:10:16,632 WARN  [http-nio-8080-exec-5] c.b.e.s.s.w.b.s.u.PersistentUserDetailsService.loadUserByUsername(119): Username noroles has no authorities
+2024-12-05T23:10:16,824 WARN  [http-nio-8080-exec-5] c.b.e.s.s.w.b.s.u.PersistentUserDetailsService.loadUserByUsername(119): Username noroles has no authorities
+2024-12-05T23:10:16,919 DEBUG [http-nio-8080-exec-5] c.b.e.s.s.w.b.s.a.AuditEventLogger.auditEventHappened(94): Audit event AUTHENTICATION_FAILURE for noroles with session id E1E20214398AEFAC3C42B5562BE1F338 from address 0:0:0:0:0:0:0:1 (Bad credentials)
+2024-12-05T23:10:16,923 DEBUG [http-nio-8080-exec-5] c.b.e.s.s.w.b.s.a.AuditEventLogger.auditEventHappened(94): Audit event AUTHORIZATION_FAILURE for anonymousUser with session id E1E20214398AEFAC3C42B5562BE1F338 from address 0:0:0:0:0:0:0:1
+2024-12-05T23:10:58,623 WARN  [Thread-5] o.s.b.f.s.DisposableBeanAdapter.destroy(221): Invocation of destroy method failed on bean with name 'inMemoryDatabaseShutdownExecutor': org.h2.jdbc.JdbcSQLNonTransientConnectionException: Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-232]
+2024-12-05T23:10:58,762 INFO  [restartedMain] c.b.e.s.s.w.b.Application.logStarting(53): Starting Application using Java 21.0.4 with PID 16536 (D:\repositories\spring-ws-basic-security-example\target\classes started by Bernardo in D:\repositories\spring-ws-basic-security-example)
+2024-12-05T23:10:58,763 DEBUG [restartedMain] c.b.e.s.s.w.b.Application.logStarting(54): Running with Spring Boot v3.4.0, Spring v6.2.0
+2024-12-05T23:10:58,763 INFO  [restartedMain] c.b.e.s.s.w.b.Application.logStartupProfileInfo(652): No active profile set, falling back to 1 default profile: "default"
+2024-12-05T23:10:59,334 WARN  [restartedMain] o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext.refresh(635): Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.CannotLoadBeanClassException: Error loading class [com.bernardomg.example.spring.security.ws.basic.login.service.DefaultLoginService] for bean with name 'defaultLoginService' defined in file [D:\repositories\spring-ws-basic-security-example\target\classes\com\bernardomg\example\spring\security\ws\basic\login\service\DefaultLoginService.class]: problem with class file or dependent class
+2024-12-05T23:10:59,362 ERROR [restartedMain] o.s.b.SpringApplication.reportFailure(857): Application run failed
+org.springframework.beans.factory.CannotLoadBeanClassException: Error loading class [com.bernardomg.example.spring.security.ws.basic.login.service.DefaultLoginService] for bean with name 'defaultLoginService' defined in file [D:\repositories\spring-ws-basic-security-example\target\classes\com\bernardomg\example\spring\security\ws\basic\login\service\DefaultLoginService.class]: problem with class file or dependent class
+	at org.springframework.beans.factory.support.AbstractBeanFactory.resolveBeanClass(AbstractBeanFactory.java:1555)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.determineTargetType(AbstractAutowireCapableBeanFactory.java:686)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.predictBeanType(AbstractAutowireCapableBeanFactory.java:654)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getType(AbstractBeanFactory.java:735)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.findAnnotationOnBean(DefaultListableBeanFactory.java:765)
+	at org.springframework.boot.sql.init.dependency.AnnotationDependsOnDatabaseInitializationDetector.detect(AnnotationDependsOnDatabaseInitializationDetector.java:36)
+	at org.springframework.boot.sql.init.dependency.DatabaseInitializationDependencyConfigurer$DependsOnDatabaseInitializationPostProcessor.detectDependsOnInitializationBeanNames(DatabaseInitializationDependencyConfigurer.java:152)
+	at org.springframework.boot.sql.init.dependency.DatabaseInitializationDependencyConfigurer$DependsOnDatabaseInitializationPostProcessor.postProcessBeanFactory(DatabaseInitializationDependencyConfigurer.java:115)
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(PostProcessorRegistrationDelegate.java:363)
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(PostProcessorRegistrationDelegate.java:197)
+	at org.springframework.context.support.AbstractApplicationContext.invokeBeanFactoryPostProcessors(AbstractApplicationContext.java:791)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:609)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:318)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1361)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1350)
+	at com.bernardomg.example.spring.security.ws.basic.Application.main(Application.java:46)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50)
+Caused by: java.lang.ClassFormatError: Duplicate method name "login" with signature "(Ljava.lang.String;Ljava.lang.String;)LLoginStatus;" in class file com/bernardomg/example/spring/security/ws/basic/login/service/DefaultLoginService
+	at java.base/java.lang.ClassLoader.defineClass1(Native Method)
+	at java.base/java.lang.ClassLoader.defineClass(ClassLoader.java:1027)
+	at java.base/java.security.SecureClassLoader.defineClass(SecureClassLoader.java:150)
+	at java.base/java.net.URLClassLoader.defineClass(URLClassLoader.java:524)
+	at java.base/java.net.URLClassLoader$1.run(URLClassLoader.java:427)
+	at java.base/java.net.URLClassLoader$1.run(URLClassLoader.java:421)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:714)
+	at java.base/java.net.URLClassLoader.findClass(URLClassLoader.java:420)
+	at org.springframework.boot.devtools.restart.classloader.RestartClassLoader.findClass(RestartClassLoader.java:136)
+	at org.springframework.boot.devtools.restart.classloader.RestartClassLoader.loadClass(RestartClassLoader.java:118)
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:526)
+	at java.base/java.lang.Class.forName0(Native Method)
+	at java.base/java.lang.Class.forName(Class.java:534)
+	at java.base/java.lang.Class.forName(Class.java:513)
+	at org.springframework.util.ClassUtils.forName(ClassUtils.java:321)
+	at org.springframework.beans.factory.support.AbstractBeanDefinition.resolveBeanClass(AbstractBeanDefinition.java:503)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doResolveBeanClass(AbstractBeanFactory.java:1620)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.resolveBeanClass(AbstractBeanFactory.java:1545)
+	... 21 more
+2024-12-05T23:11:06,632 INFO  [restartedMain] c.b.e.s.s.w.b.Application.logStarting(53): Starting Application using Java 21.0.4 with PID 16536 (D:\repositories\spring-ws-basic-security-example\target\classes started by Bernardo in D:\repositories\spring-ws-basic-security-example)
+2024-12-05T23:11:06,635 DEBUG [restartedMain] c.b.e.s.s.w.b.Application.logStarting(54): Running with Spring Boot v3.4.0, Spring v6.2.0
+2024-12-05T23:11:06,636 INFO  [restartedMain] c.b.e.s.s.w.b.Application.logStartupProfileInfo(652): No active profile set, falling back to 1 default profile: "default"
+2024-12-05T23:11:08,076 WARN  [restartedMain] o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration.openEntityManagerInViewInterceptor(241): spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-12-05T23:11:08,894 INFO  [restartedMain] c.b.e.s.s.w.b.Application.logStarted(59): Started Application in 2.382 seconds (process running for 351.16)
+2024-12-05T23:11:23,627 WARN  [Thread-7] o.s.b.f.s.DisposableBeanAdapter.destroy(221): Invocation of destroy method failed on bean with name 'inMemoryDatabaseShutdownExecutor': org.h2.jdbc.JdbcSQLNonTransientConnectionException: Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-232]
+2024-12-05T23:11:23,727 INFO  [restartedMain] c.b.e.s.s.w.b.Application.logStarting(53): Starting Application using Java 21.0.4 with PID 16536 (D:\repositories\spring-ws-basic-security-example\target\classes started by Bernardo in D:\repositories\spring-ws-basic-security-example)
+2024-12-05T23:11:23,728 DEBUG [restartedMain] c.b.e.s.s.w.b.Application.logStarting(54): Running with Spring Boot v3.4.0, Spring v6.2.0
+2024-12-05T23:11:23,728 INFO  [restartedMain] c.b.e.s.s.w.b.Application.logStartupProfileInfo(652): No active profile set, falling back to 1 default profile: "default"
+2024-12-05T23:11:24,921 WARN  [restartedMain] o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration.openEntityManagerInViewInterceptor(241): spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-12-05T23:11:25,712 INFO  [restartedMain] c.b.e.s.s.w.b.Application.logStarted(59): Started Application in 2.022 seconds (process running for 367.978)
+2024-12-05T23:11:46,550 WARN  [Thread-15] o.s.b.f.s.DisposableBeanAdapter.destroy(221): Invocation of destroy method failed on bean with name 'inMemoryDatabaseShutdownExecutor': org.h2.jdbc.JdbcSQLNonTransientConnectionException: Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-232]
+2024-12-05T23:11:46,658 INFO  [restartedMain] c.b.e.s.s.w.b.Application.logStarting(53): Starting Application using Java 21.0.4 with PID 16536 (D:\repositories\spring-ws-basic-security-example\target\classes started by Bernardo in D:\repositories\spring-ws-basic-security-example)
+2024-12-05T23:11:46,659 DEBUG [restartedMain] c.b.e.s.s.w.b.Application.logStarting(54): Running with Spring Boot v3.4.0, Spring v6.2.0
+2024-12-05T23:11:46,660 INFO  [restartedMain] c.b.e.s.s.w.b.Application.logStartupProfileInfo(652): No active profile set, falling back to 1 default profile: "default"
+2024-12-05T23:11:48,178 WARN  [restartedMain] o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration.openEntityManagerInViewInterceptor(241): spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-12-05T23:11:48,989 INFO  [restartedMain] c.b.e.s.s.w.b.Application.logStarted(59): Started Application in 2.374 seconds (process running for 391.255)
+2024-12-05T23:12:11,921 WARN  [Thread-19] o.s.b.f.s.DisposableBeanAdapter.destroy(221): Invocation of destroy method failed on bean with name 'inMemoryDatabaseShutdownExecutor': org.h2.jdbc.JdbcSQLNonTransientConnectionException: Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-232]
+2024-12-05T23:12:12,022 INFO  [restartedMain] c.b.e.s.s.w.b.Application.logStarting(53): Starting Application using Java 21.0.4 with PID 16536 (D:\repositories\spring-ws-basic-security-example\target\classes started by Bernardo in D:\repositories\spring-ws-basic-security-example)
+2024-12-05T23:12:12,023 DEBUG [restartedMain] c.b.e.s.s.w.b.Application.logStarting(54): Running with Spring Boot v3.4.0, Spring v6.2.0
+2024-12-05T23:12:12,024 INFO  [restartedMain] c.b.e.s.s.w.b.Application.logStartupProfileInfo(652): No active profile set, falling back to 1 default profile: "default"
+2024-12-05T23:12:13,409 WARN  [restartedMain] o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration.openEntityManagerInViewInterceptor(241): spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-12-05T23:12:14,315 INFO  [restartedMain] c.b.e.s.s.w.b.Application.logStarted(59): Started Application in 2.329 seconds (process running for 416.581)
+2024-12-05T23:12:50,682 WARN  [Thread-23] o.s.b.f.s.DisposableBeanAdapter.destroy(221): Invocation of destroy method failed on bean with name 'inMemoryDatabaseShutdownExecutor': org.h2.jdbc.JdbcSQLNonTransientConnectionException: Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-232]
+2024-12-05T23:12:50,790 INFO  [restartedMain] c.b.e.s.s.w.b.Application.logStarting(53): Starting Application using Java 21.0.4 with PID 16536 (D:\repositories\spring-ws-basic-security-example\target\classes started by Bernardo in D:\repositories\spring-ws-basic-security-example)
+2024-12-05T23:12:50,792 DEBUG [restartedMain] c.b.e.s.s.w.b.Application.logStarting(54): Running with Spring Boot v3.4.0, Spring v6.2.0
+2024-12-05T23:12:50,793 INFO  [restartedMain] c.b.e.s.s.w.b.Application.logStartupProfileInfo(652): No active profile set, falling back to 1 default profile: "default"
+2024-12-05T23:12:52,213 WARN  [restartedMain] o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration.openEntityManagerInViewInterceptor(241): spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-12-05T23:12:52,952 INFO  [restartedMain] c.b.e.s.s.w.b.Application.logStarted(59): Started Application in 2.204 seconds (process running for 455.218)
+2024-12-05T23:12:59,601 WARN  [Thread-27] o.s.b.f.s.DisposableBeanAdapter.destroy(221): Invocation of destroy method failed on bean with name 'inMemoryDatabaseShutdownExecutor': org.h2.jdbc.JdbcSQLNonTransientConnectionException: Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-232]
+2024-12-05T23:12:59,713 INFO  [restartedMain] c.b.e.s.s.w.b.Application.logStarting(53): Starting Application using Java 21.0.4 with PID 16536 (D:\repositories\spring-ws-basic-security-example\target\classes started by Bernardo in D:\repositories\spring-ws-basic-security-example)
+2024-12-05T23:12:59,714 DEBUG [restartedMain] c.b.e.s.s.w.b.Application.logStarting(54): Running with Spring Boot v3.4.0, Spring v6.2.0
+2024-12-05T23:12:59,715 INFO  [restartedMain] c.b.e.s.s.w.b.Application.logStartupProfileInfo(652): No active profile set, falling back to 1 default profile: "default"
+2024-12-05T23:13:00,904 WARN  [restartedMain] o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration.openEntityManagerInViewInterceptor(241): spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-12-05T23:13:01,663 INFO  [restartedMain] c.b.e.s.s.w.b.Application.logStarted(59): Started Application in 1.987 seconds (process running for 463.929)
+2024-12-05T23:14:29,184 WARN  [SpringApplicationShutdownHook] o.s.b.f.s.DisposableBeanAdapter.destroy(221): Invocation of destroy method failed on bean with name 'inMemoryDatabaseShutdownExecutor': org.h2.jdbc.JdbcSQLNonTransientConnectionException: Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-232]

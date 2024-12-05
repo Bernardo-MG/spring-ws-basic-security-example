@@ -26,4 +26,4 @@
  * Login model.
  */
 
-package com.bernardomg.example.spring.security.ws.basic.login.model;
+package com.bernardomg.example.spring.security.ws.basic.login.adapter.outbound.rest.controller;

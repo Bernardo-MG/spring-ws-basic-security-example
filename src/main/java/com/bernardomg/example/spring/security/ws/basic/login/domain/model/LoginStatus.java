@@ -22,45 +22,14 @@
  * SOFTWARE.
  */
 
-package com.bernardomg.example.spring.security.ws.basic.login.controller;
-
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import com.bernardomg.example.spring.security.ws.basic.login.model.LoginStatus;
-import com.bernardomg.example.spring.security.ws.basic.login.model.UserForm;
-import com.bernardomg.example.spring.security.ws.basic.login.service.LoginService;
-
-import lombok.AllArgsConstructor;
+package com.bernardomg.example.spring.security.ws.basic.login.domain.model;
 
 /**
- * Login controller. Allows a user to log into the application.
+ * Status after a login attempt.
  *
  * @author Bernardo Mart&iacute;nez Garrido
  *
  */
-@RestController
-@RequestMapping("/login")
-@AllArgsConstructor
-public class LoginController {
-
-    /**
-     * Login service.
-     */
-    private final LoginService service;
-
-    /**
-     * Logs in a user.
-     *
-     * @param user
-     *            user details
-     * @return the login status after the login attempt
-     */
-    @PostMapping
-    public LoginStatus login(@RequestBody final UserForm user) {
-        return service.login(user.getUsername(), user.getPassword());
-    }
+public record LoginStatus(String username, Boolean logged, String token) {
 
 }

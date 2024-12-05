@@ -22,41 +22,8 @@
  * SOFTWARE.
  */
 
-package com.bernardomg.example.spring.security.ws.basic.login.model;
-
-import lombok.Data;
-import lombok.NonNull;
-
 /**
- * Immutable implementation of {@link LoginStatus}.
- *
- * @author Bernardo Mart&iacute;nez Garrido
- *
+ * Login model.
  */
-@Data
-public final class ImmutableLoginStatus implements LoginStatus {
 
-    /**
-     * Logged in flag.
-     */
-    private final Boolean logged;
-
-    /**
-     * Authentication token.
-     */
-    private final String  token;
-
-    /**
-     * Logged in user username.
-     */
-    private final String  username;
-
-    public ImmutableLoginStatus(@NonNull final String usnm, @NonNull final Boolean lgd, @NonNull final String tkn) {
-        super();
-
-        username = usnm;
-        logged = lgd;
-        token = tkn;
-    }
-
-}
+package com.bernardomg.example.spring.security.ws.basic.login.domain.model;
