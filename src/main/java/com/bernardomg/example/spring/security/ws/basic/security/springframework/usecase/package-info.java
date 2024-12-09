@@ -26,4 +26,4 @@
  * User details components.
  */
 
-package com.bernardomg.example.spring.security.ws.basic.security.userdetails;
+package com.bernardomg.example.spring.security.ws.basic.security.springframework.usecase;

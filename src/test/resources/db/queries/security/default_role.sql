@@ -1,9 +1,9 @@
 -- All the privileges
 INSERT INTO privileges (id, name) VALUES
-   (1, 'CREATE_DATA'),
-   (2, 'READ_DATA'),
-   (3, 'UPDATE_DATA'),
-   (4, 'DELETE_DATA');
+   (1, 'CREATE:DATA'),
+   (2, 'READ:DATA'),
+   (3, 'UPDATE:DATA'),
+   (4, 'DELETE:DATA');
 
 -- Default role
 INSERT INTO roles (id, name) VALUES

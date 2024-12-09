@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-package com.bernardomg.example.spring.security.ws.basic.security.userdetails;
+package com.bernardomg.example.spring.security.ws.basic.security.springframework.usecase;
 
 import java.util.Collection;
 import java.util.Locale;
