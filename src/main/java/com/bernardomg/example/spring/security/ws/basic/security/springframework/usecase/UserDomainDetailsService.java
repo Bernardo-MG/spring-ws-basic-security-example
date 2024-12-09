@@ -134,8 +134,6 @@ public final class UserDomainDetailsService implements UserDetailsService {
      *            user to transform
      * @param password
      *            user password
-     * @param authorities
-     *            authorities for the user details
      * @return equivalent user details
      */
     private final UserDetails toUserDetails(final User user, final String password) {

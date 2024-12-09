@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-package com.bernardomg.example.spring.security.ws.basic.person.adapter.inbound.placeholder.repository;
+package com.bernardomg.example.spring.security.ws.basic.person.adapter.inbound.user.repository;
 
 import java.util.Collection;
 import java.util.Objects;

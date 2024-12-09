@@ -32,7 +32,7 @@ class TestUserDomainDetailsService {
     private UserDomainDetailsService service;
 
     @Mock
-    private UserRepository               userRepository;
+    private UserRepository           userRepository;
 
     public TestUserDomainDetailsService() {
         super();

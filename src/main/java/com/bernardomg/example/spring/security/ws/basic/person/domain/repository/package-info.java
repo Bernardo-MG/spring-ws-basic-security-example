@@ -23,7 +23,7 @@
  */
 
 /**
- * JWT entry points.
+ * Person repository.
  */
 
-package com.bernardomg.example.spring.security.ws.basic.security.entrypoint;
+package com.bernardomg.example.spring.security.ws.basic.person.domain.repository;

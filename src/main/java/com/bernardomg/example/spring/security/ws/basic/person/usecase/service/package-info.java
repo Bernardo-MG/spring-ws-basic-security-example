@@ -1,7 +1,7 @@
 /**
  * The MIT License (MIT)
  * <p>
- * Copyright (c) 2023 the original author or authors.
+ * Copyright (c) 2022-2023 the original author or authors.
  * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,22 +22,8 @@
  * SOFTWARE.
  */
 
-package com.bernardomg.example.spring.security.ws.basic.security.user.domain.model;
-
-import java.util.Collection;
-
-import lombok.Builder;
-
 /**
- * Representation of a user.
- * <p>
- * FIXME: this should be immutable
- *
- * @author Bernardo Mart&iacute;nez Garrido
- *
+ * Person service.
  */
-@Builder(setterPrefix = "with")
-public record User(String email, boolean enabled, boolean expired, boolean locked, String name, boolean passwordExpired,
-        Collection<Privilege> privileges, String username) {
 
-}
+package com.bernardomg.example.spring.security.ws.basic.person.usecase.service;

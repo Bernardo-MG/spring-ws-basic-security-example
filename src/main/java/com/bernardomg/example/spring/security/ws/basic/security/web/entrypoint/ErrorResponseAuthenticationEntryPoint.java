@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-package com.bernardomg.example.spring.security.ws.basic.security.entrypoint;
+package com.bernardomg.example.spring.security.ws.basic.security.web.entrypoint;
 
 import java.io.IOException;
 

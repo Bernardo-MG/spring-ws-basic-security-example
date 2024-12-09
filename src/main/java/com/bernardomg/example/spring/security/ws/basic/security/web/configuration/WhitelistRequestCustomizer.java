@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-package com.bernardomg.example.spring.security.ws.basic.security.configuration;
+package com.bernardomg.example.spring.security.ws.basic.security.web.configuration;
 
 import java.util.Collection;
 import java.util.Objects;
