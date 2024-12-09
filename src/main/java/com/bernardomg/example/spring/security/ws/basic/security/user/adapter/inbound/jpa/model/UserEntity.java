@@ -41,10 +41,7 @@ import jakarta.persistence.Transient;
 import lombok.Data;
 
 /**
- * Persistent user data.
- * <p>
- * JPA entities shouldn't end mixed up with the domain model. For this reason this class won't extend any generic
- * interface, and instead is a JPA POJO.
+ * User entity.
  *
  * @author Bernardo Mart&iacute;nez Garrido
  *

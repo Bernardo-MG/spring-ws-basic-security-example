@@ -36,10 +36,7 @@ import jakarta.persistence.TableGenerator;
 import lombok.Data;
 
 /**
- * Persistent privilege data.
- * <p>
- * JPA entities shouldn't end mixed up with the domain model. For this reason this class won't extend any generic
- * interface, and instead is a JPA POJO.
+ * Privilege entity.
  *
  * @author Bernardo Mart&iacute;nez Garrido
  *

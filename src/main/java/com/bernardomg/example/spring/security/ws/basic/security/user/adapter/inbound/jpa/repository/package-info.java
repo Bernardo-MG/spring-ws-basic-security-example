@@ -23,7 +23,7 @@
  */
 
 /**
- * User repositories.
+ * JPA user repositories.
  */
 
 package com.bernardomg.example.spring.security.ws.basic.security.user.adapter.inbound.jpa.repository;
