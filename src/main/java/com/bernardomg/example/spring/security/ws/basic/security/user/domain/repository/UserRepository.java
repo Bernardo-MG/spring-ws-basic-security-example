@@ -1,7 +1,7 @@
 /**
  * The MIT License (MIT)
  * <p>
- * Copyright (c) 2022-2023 the original author or authors.
+ * Copyright (c) 2023 the original author or authors.
  * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,33 +22,35 @@
  * SOFTWARE.
  */
 
-package com.bernardomg.example.spring.security.ws.basic.security.user.persistence.repository;
+package com.bernardomg.example.spring.security.ws.basic.security.user.domain.repository;
 
-import java.util.Collection;
+import java.util.Optional;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
-
-import com.bernardomg.example.spring.security.ws.basic.security.user.persistence.model.PersistentPrivilege;
+import com.bernardomg.example.spring.security.ws.basic.security.user.domain.model.User;
 
 /**
- * Repository for privileges.
+ * User repository.
  *
  * @author Bernardo Mart&iacute;nez Garrido
- *
  */
-public interface PrivilegeRepository extends JpaRepository<PersistentPrivilege, Long> {
+public interface UserRepository {
 
     /**
-     * Returns all the privileges for a user. This requires a join from the user up to the privileges.
+     * Returns the user for the received username.
      *
-     * @param id
-     *            user id
-     * @return all the privileges for the user
+     * @param username
+     *            user to search for
+     * @return the user for the received username
      */
-    @Query(value = "SELECT p.* FROM privileges p JOIN role_privileges rp ON p.id = rp.privilege_id JOIN roles r ON r.id = rp.role_id JOIN user_roles ur ON r.id = ur.role_id JOIN users u ON u.id = ur.user_id WHERE u.id = :id",
-            nativeQuery = true)
-    public Collection<PersistentPrivilege> findForUser(@Param("id") final Long id);
+    public Optional<User> findOne(final String username);
+
+    /**
+     * Returns the password for the user.
+     *
+     * @param username
+     *            user to search for the password
+     * @return the user password
+     */
+    public Optional<String> findPassword(final String username);
 
 }

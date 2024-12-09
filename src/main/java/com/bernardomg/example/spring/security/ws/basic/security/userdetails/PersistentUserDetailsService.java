@@ -27,20 +27,16 @@ package com.bernardomg.example.spring.security.ws.basic.security.userdetails;
 import java.util.Collection;
 import java.util.Locale;
 import java.util.Objects;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
-import com.bernardomg.example.spring.security.ws.basic.security.user.persistence.model.PersistentPrivilege;
-import com.bernardomg.example.spring.security.ws.basic.security.user.persistence.model.PersistentUser;
-import com.bernardomg.example.spring.security.ws.basic.security.user.persistence.repository.PrivilegeRepository;
-import com.bernardomg.example.spring.security.ws.basic.security.user.persistence.repository.UserRepository;
+import com.bernardomg.example.spring.security.ws.basic.security.user.domain.model.Privilege;
+import com.bernardomg.example.spring.security.ws.basic.security.user.domain.model.User;
+import com.bernardomg.example.spring.security.ws.basic.security.user.domain.repository.UserRepository;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -74,103 +70,95 @@ import lombok.extern.slf4j.Slf4j;
 public final class PersistentUserDetailsService implements UserDetailsService {
 
     /**
-     * Repository for the privileges.
+     * User repository.
      */
-    private final PrivilegeRepository privilegeRepo;
-
-    /**
-     * Repository for the user data.
-     */
-    private final UserRepository      userRepo;
+    private final UserRepository userRepository;
 
     /**
      * Constructs a user details service.
      *
-     * @param userRepository
-     *            repository for user details
-     * @param privilegeRepository
-     *            repository for privileges
+     * @param userRepo
+     *            users repository
      */
-    public PersistentUserDetailsService(final UserRepository userRepository,
-            final PrivilegeRepository privilegeRepository) {
+    public PersistentUserDetailsService(final UserRepository userRepo) {
         super();
 
-        userRepo = Objects.requireNonNull(userRepository, "Received a null pointer as repository");
-        privilegeRepo = Objects.requireNonNull(privilegeRepository, "Received a null pointer as repository");
+        userRepository = Objects.requireNonNull(userRepo, "Received a null pointer as user repository");
     }
 
     @Override
     public final UserDetails loadUserByUsername(final String username) throws UsernameNotFoundException {
-        final Optional<PersistentUser>               user;
-        final Collection<? extends GrantedAuthority> authorities;
-        final UserDetails                            details;
+        final User        user;
+        final UserDetails details;
+        final String      password;
 
-        user = userRepo.findOneByUsername(username.toLowerCase(Locale.getDefault()));
+        user = userRepository.findOne(username.toLowerCase(Locale.getDefault()))
+            .orElseThrow(() -> {
+                log.error("Username {} not found in database", username);
+                throw new UsernameNotFoundException(String.format("Username %s not found in database", username));
+            });
 
-        if (!user.isPresent()) {
-            log.warn("Username {} not found in DB", username);
-            throw new UsernameNotFoundException(username);
+        if (user.privileges()
+            .isEmpty()) {
+            log.error("Username {} has no authorities", username);
+            throw new UsernameNotFoundException(String.format("Username %s has no authorities", username));
         }
 
-        authorities = getAuthorities(user.get()
-            .getId());
+        password = userRepository.findPassword(username)
+            .get();
+        details = toUserDetails(user, password);
 
-        if (authorities.isEmpty()) {
-            log.warn("Username {} has no authorities", username);
-            throw new UsernameNotFoundException(username);
-        }
-
-        details = toUserDetails(user.get(), authorities);
-
-        log.debug("User {} exists", username);
-        log.debug("Authorities for {}: {}", username, details.getAuthorities());
-        log.debug("User flags for {}. Enabled: {}. Non expired: {}. Non locked: {}. Credentials non expired: {}",
-            username, details.isEnabled(), details.isAccountNonExpired(), details.isAccountNonLocked(),
+        log.debug("User {} exists. Enabled: {}. Non expired: {}. Non locked: {}. Credentials non expired: {}", username,
+            details.isEnabled(), details.isAccountNonExpired(), details.isAccountNonLocked(),
             details.isCredentialsNonExpired());
+        log.debug("Authorities for {}: {}", username, details.getAuthorities());
 
         return details;
     }
 
     /**
-     * Returns all the authorities for the user.
+     * Creates a {@link GrantedAuthority} from the {@link Privilege}.
      *
-     * @param id
-     *            id of the user
-     * @return all the authorities for the user
+     * @param privilege
+     *            privilege to transform
+     * @return {@code GrantedAuthority} from the {@code Privilege}
      */
-    private final Collection<GrantedAuthority> getAuthorities(final Long id) {
-        return privilegeRepo.findForUser(id)
-            .stream()
-            .map(PersistentPrivilege::getName)
-            .distinct()
-            .map(SimpleGrantedAuthority::new)
-            .collect(Collectors.toList());
+    private final GrantedAuthority toGrantedAuthority(final Privilege privilege) {
+        return new SimpleGrantedAuthority(privilege.name());
     }
 
     /**
-     * Transforms a user entity into a user details object.
+     * Transforms a user into a user details object.
      *
      * @param user
-     *            entity to transform
+     *            user to transform
+     * @param password
+     *            user password
      * @param authorities
      *            authorities for the user details
      * @return equivalent user details
      */
-    private final UserDetails toUserDetails(final PersistentUser user,
-            final Collection<? extends GrantedAuthority> authorities) {
-        final Boolean enabled;
-        final Boolean accountNonExpired;
-        final Boolean credentialsNonExpired;
-        final Boolean accountNonLocked;
+    private final UserDetails toUserDetails(final User user, final String password) {
+        final Boolean                                enabled;
+        final Boolean                                accountNonExpired;
+        final Boolean                                credentialsNonExpired;
+        final Boolean                                accountNonLocked;
+        final Collection<? extends GrantedAuthority> authorities;
 
         // Loads status
-        enabled = user.getEnabled();
-        accountNonExpired = !user.getExpired();
-        credentialsNonExpired = !user.getCredentialsExpired();
-        accountNonLocked = !user.getLocked();
+        enabled = user.enabled();
+        accountNonExpired = !user.expired();
+        credentialsNonExpired = !user.passwordExpired();
+        accountNonLocked = !user.locked();
 
-        return new User(user.getUsername(), user.getPassword(), enabled, accountNonExpired, credentialsNonExpired,
-            accountNonLocked, authorities);
+        // Authorities
+        authorities = user.privileges()
+            .stream()
+            .map(this::toGrantedAuthority)
+            .toList();
+
+        return new org.springframework.security.core.userdetails.User(user.username(), password, enabled,
+            accountNonExpired, credentialsNonExpired, accountNonLocked, authorities);
     }
 
 }

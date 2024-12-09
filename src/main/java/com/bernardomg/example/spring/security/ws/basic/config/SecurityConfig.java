@@ -31,8 +31,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import com.bernardomg.example.spring.security.ws.basic.security.user.persistence.repository.PrivilegeRepository;
-import com.bernardomg.example.spring.security.ws.basic.security.user.persistence.repository.UserRepository;
+import com.bernardomg.example.spring.security.ws.basic.security.user.domain.repository.UserRepository;
 import com.bernardomg.example.spring.security.ws.basic.security.userdetails.PersistentUserDetailsService;
 
 /**
@@ -67,14 +66,11 @@ public class SecurityConfig {
      *
      * @param userRepository
      *            repository for finding users
-     * @param privilegeRepository
-     *            repository for finding user privileges
      * @return the user details service
      */
     @Bean("userDetailsService")
-    public UserDetailsService getUserDetailsService(final UserRepository userRepository,
-            final PrivilegeRepository privilegeRepository) {
-        return new PersistentUserDetailsService(userRepository, privilegeRepository);
+    public UserDetailsService getUserDetailsService(final UserRepository userRepository) {
+        return new PersistentUserDetailsService(userRepository);
     }
 
 }

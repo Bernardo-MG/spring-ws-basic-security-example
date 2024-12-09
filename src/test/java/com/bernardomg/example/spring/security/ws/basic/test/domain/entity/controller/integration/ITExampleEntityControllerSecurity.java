@@ -73,11 +73,11 @@ public final class ITExampleEntityControllerSecurity {
     }
 
     private final RequestBuilder getRequest() {
-        return MockMvcRequestBuilders.get("/rest/entity");
+        return MockMvcRequestBuilders.get("/rest/person");
     }
 
     private final RequestBuilder getRequestAuthorized() {
-        return MockMvcRequestBuilders.get("/rest/entity")
+        return MockMvcRequestBuilders.get("/rest/person")
             .header("Authorization", "Basic YWRtaW46MTIzNA==");
     }
 

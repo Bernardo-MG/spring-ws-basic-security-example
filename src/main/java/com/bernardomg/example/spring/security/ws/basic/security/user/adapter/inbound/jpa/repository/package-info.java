@@ -23,7 +23,7 @@
  */
 
 /**
- * User model.
+ * User repositories.
  */
 
-package com.bernardomg.example.spring.security.ws.basic.security.user.persistence.model;
+package com.bernardomg.example.spring.security.ws.basic.security.user.adapter.inbound.jpa.repository;
