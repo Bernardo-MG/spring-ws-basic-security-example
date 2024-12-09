@@ -67,7 +67,7 @@ import lombok.extern.slf4j.Slf4j;
  *
  */
 @Slf4j
-public final class PersistentUserDetailsService implements UserDetailsService {
+public final class UserDomainDetailsService implements UserDetailsService {
 
     /**
      * User repository.
@@ -80,7 +80,7 @@ public final class PersistentUserDetailsService implements UserDetailsService {
      * @param userRepo
      *            users repository
      */
-    public PersistentUserDetailsService(final UserRepository userRepo) {
+    public UserDomainDetailsService(final UserRepository userRepo) {
         super();
 
         userRepository = Objects.requireNonNull(userRepo, "Received a null pointer as user repository");
