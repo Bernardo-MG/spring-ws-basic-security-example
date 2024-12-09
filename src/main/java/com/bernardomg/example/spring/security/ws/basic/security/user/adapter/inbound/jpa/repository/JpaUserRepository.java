@@ -26,6 +26,14 @@ public final class JpaUserRepository implements UserRepository {
     }
 
     @Override
+    public final Collection<User> findAll() {
+        return userSpringRepository.findAll()
+            .stream()
+            .map(this::toDomain)
+            .toList();
+    }
+
+    @Override
     public Optional<User> findOne(final String username) {
         return userSpringRepository.findOneByUsername(username)
             .map(this::toDomain);

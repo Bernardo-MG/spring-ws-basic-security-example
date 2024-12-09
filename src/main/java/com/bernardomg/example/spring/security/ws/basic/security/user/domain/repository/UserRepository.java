@@ -24,6 +24,7 @@
 
 package com.bernardomg.example.spring.security.ws.basic.security.user.domain.repository;
 
+import java.util.Collection;
 import java.util.Optional;
 
 import com.bernardomg.example.spring.security.ws.basic.security.user.domain.model.User;
@@ -34,6 +35,13 @@ import com.bernardomg.example.spring.security.ws.basic.security.user.domain.mode
  * @author Bernardo Mart&iacute;nez Garrido
  */
 public interface UserRepository {
+
+    /**
+     * Returns all the users.
+     *
+     * @return the user for the received username
+     */
+    public Collection<User> findAll();
 
     /**
      * Returns the user for the received username.
