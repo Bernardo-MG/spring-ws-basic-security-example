@@ -1,9 +1,11 @@
 {
 	"info": {
-		"_postman_id": "b05c67a1-9e73-45f7-9e14-992c9c80d4a2",
+		"_postman_id": "d28cc57e-16ae-457e-b974-a3c656f32761",
 		"name": "Basic auth",
 		"description": "Requests using the basic HTTP authentication scheme. Which means sending the user and password hashed in the header.",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29322077",
+		"_collection_link": "https://martian-astronaut-39097.postman.co/workspace/Security-examples~3c194cbc-99d2-481a-a2d3-07aae427b74c/collection/29322077-d28cc57e-16ae-457e-b974-a3c656f32761?action=share&source=collection_link&creator=29322077"
 	},
 	"item": [
 		{
@@ -26,7 +28,8 @@
 									"    pm.expect(responseJson.errors[0].message).to.eql('Unauthorized');\r",
 									"});"
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
@@ -34,10 +37,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "/rest/entity",
+							"raw": "/person",
 							"path": [
-								"rest",
-								"entity"
+								"person"
 							]
 						}
 					},
@@ -86,7 +88,8 @@
 									"    pm.expect(responseJson.errors[0].message).to.eql('Unauthorized');\r",
 									"});"
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
@@ -94,10 +97,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "/rest/entity",
+							"raw": "/person",
 							"path": [
-								"rest",
-								"entity"
+								"person"
 							]
 						}
 					},
@@ -155,7 +157,8 @@
 									"    pm.expect(responseJson).to.have.property('content');\r",
 									"});"
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
@@ -163,10 +166,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "/rest/entity",
+							"raw": "/person",
 							"path": [
-								"rest",
-								"entity"
+								"person"
 							]
 						}
 					},
@@ -230,7 +232,8 @@
 									"    pm.expect(responseJson.errors[0].message).to.eql('Unauthorized');\r",
 									"});"
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
@@ -238,9 +241,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "/entity",
+							"raw": "/person",
 							"path": [
-								"entity"
+								"person"
 							]
 						}
 					},
