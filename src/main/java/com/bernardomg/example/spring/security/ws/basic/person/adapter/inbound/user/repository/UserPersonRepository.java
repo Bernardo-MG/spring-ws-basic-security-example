@@ -31,8 +31,8 @@ import org.springframework.stereotype.Repository;
 
 import com.bernardomg.example.spring.security.ws.basic.person.domain.model.Person;
 import com.bernardomg.example.spring.security.ws.basic.person.domain.repository.PersonRepository;
-import com.bernardomg.example.spring.security.ws.basic.security.user.domain.model.User;
-import com.bernardomg.example.spring.security.ws.basic.security.user.domain.repository.UserRepository;
+import com.bernardomg.example.spring.security.ws.basic.user.domain.model.User;
+import com.bernardomg.example.spring.security.ws.basic.user.domain.repository.UserRepository;
 
 import lombok.extern.slf4j.Slf4j;
 

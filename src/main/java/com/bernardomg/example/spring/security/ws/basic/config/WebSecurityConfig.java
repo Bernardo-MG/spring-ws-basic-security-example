@@ -37,7 +37,7 @@ import org.springframework.security.config.annotation.web.configurers.LogoutConf
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.SecurityFilterChain;
 
-import com.bernardomg.example.spring.security.ws.basic.security.web.configuration.WhitelistRequestCustomizer;
+import com.bernardomg.example.spring.security.ws.basic.springframework.web.WhitelistRequestCustomizer;
 
 /**
  * Web security configuration.
