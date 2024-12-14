@@ -16,6 +16,3 @@ management:
     web:
       exposure:
         include: auditevents
-    enabled-by-default: false
-    auditevents:
-      enabled: true
