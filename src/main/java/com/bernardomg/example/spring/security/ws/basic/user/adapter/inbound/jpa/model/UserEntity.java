@@ -109,6 +109,9 @@ public class UserEntity implements Serializable {
     @Column(name = "password", nullable = false, length = 60)
     private String                 password;
 
+    /**
+     * Roles.
+     */
     @OneToMany
     @JoinTable(name = "user_roles", joinColumns = { @JoinColumn(name = "user_id", referencedColumnName = "id") },
             inverseJoinColumns = { @JoinColumn(name = "role_id", referencedColumnName = "id") })

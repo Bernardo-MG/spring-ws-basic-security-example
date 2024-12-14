@@ -37,12 +37,15 @@ import com.bernardomg.example.spring.security.ws.basic.user.domain.repository.Us
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * Person repository which takes the data from the users.
+ * Person repository which takes the data from the users. Reads from the users repository, and maps into {@code Person}.
  */
 @Slf4j
 @Repository
 public final class UserPersonRepository implements PersonRepository {
 
+    /**
+     * User repository. The data for the persons is taken from here.
+     */
     private final UserRepository userRepository;
 
     public UserPersonRepository(final UserRepository userRepo) {

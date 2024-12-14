@@ -71,6 +71,9 @@ public class RoleEntity implements Serializable {
     @Column(name = "name", nullable = false, unique = true, length = 60)
     private String                      name;
 
+    /**
+     * Privileges.
+     */
     @OneToMany
     @JoinTable(name = "role_privileges", joinColumns = { @JoinColumn(name = "role_id", referencedColumnName = "id") },
             inverseJoinColumns = { @JoinColumn(name = "privilege_id", referencedColumnName = "id") })
