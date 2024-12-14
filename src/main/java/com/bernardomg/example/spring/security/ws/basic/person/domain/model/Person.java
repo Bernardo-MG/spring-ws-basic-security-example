@@ -24,6 +24,11 @@
 
 package com.bernardomg.example.spring.security.ws.basic.person.domain.model;
 
+/**
+ * Person.
+ *
+ * @author Bernardo Mart&iacute;nez Garrido
+ */
 public record Person(String id, String name) {
 
 }

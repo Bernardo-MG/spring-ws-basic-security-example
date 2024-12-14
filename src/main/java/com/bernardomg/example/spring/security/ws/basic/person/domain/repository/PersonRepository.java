@@ -28,8 +28,18 @@ import java.util.Collection;
 
 import com.bernardomg.example.spring.security.ws.basic.person.domain.model.Person;
 
+/**
+ * Person repository.
+ *
+ * @author Bernardo Mart&iacute;nez Garrido
+ */
 public interface PersonRepository {
 
+    /**
+     * Returns all the people.
+     *
+     * @return all the people
+     */
     public Collection<Person> findAll();
 
 }

@@ -38,6 +38,8 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * Person repository which takes the data from the users. Reads from the users repository, and maps into {@code Person}.
+ *
+ * @author Bernardo Mart&iacute;nez Garrido
  */
 @Slf4j
 @Repository

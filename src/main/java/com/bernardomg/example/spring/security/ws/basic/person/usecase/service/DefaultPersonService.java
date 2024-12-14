@@ -36,6 +36,8 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * Default person service, which just takes the data from the person repository.
+ *
+ * @author Bernardo Mart&iacute;nez Garrido
  */
 @Slf4j
 @Service
