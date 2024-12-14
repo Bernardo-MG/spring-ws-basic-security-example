@@ -28,15 +28,16 @@ import java.util.Arrays;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.CsrfConfigurer;
 import org.springframework.security.config.annotation.web.configurers.FormLoginConfigurer;
 import org.springframework.security.config.annotation.web.configurers.LogoutConfigurer;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.SecurityFilterChain;
 
+import com.bernardomg.example.spring.security.ws.basic.springframework.web.ErrorResponseAuthenticationEntryPoint;
 import com.bernardomg.example.spring.security.ws.basic.springframework.web.WhitelistRequestCustomizer;
 
 /**
@@ -77,8 +78,11 @@ public class WebSecurityConfig {
             .cors(cors -> {})
             .formLogin(FormLoginConfigurer::disable)
             .logout(LogoutConfigurer::disable)
+            .sessionManagement(t -> t.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             // Activates HTTP Basic authentication
-            .httpBasic(Customizer.withDefaults());
+            .httpBasic(t ->
+            // Return an error response on an auth failure
+            t.authenticationEntryPoint(new ErrorResponseAuthenticationEntryPoint()));
 
         http.userDetailsService(userDetailsService);
 
