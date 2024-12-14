@@ -24,10 +24,9 @@
 
 package com.bernardomg.example.spring.security.ws.basic.config;
 
-import java.util.Arrays;
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.CsrfConfigurer;
@@ -36,9 +35,10 @@ import org.springframework.security.config.annotation.web.configurers.LogoutConf
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.servlet.util.matcher.MvcRequestMatcher;
+import org.springframework.web.servlet.handler.HandlerMappingIntrospector;
 
 import com.bernardomg.example.spring.security.ws.basic.springframework.web.ErrorResponseAuthenticationEntryPoint;
-import com.bernardomg.example.spring.security.ws.basic.springframework.web.WhitelistRequestCustomizer;
 
 /**
  * Web security configuration.
@@ -62,6 +62,8 @@ public class WebSecurityConfig {
      *
      * @param http
      *            HTTP security component
+     * @param introspector
+     *            utility class to find routes
      * @param userDetailsService
      *            user details service
      * @return web security filter chain with all authentication requirements
@@ -70,19 +72,31 @@ public class WebSecurityConfig {
      */
     @Bean("webSecurityFilterChain")
     public SecurityFilterChain getWebSecurityFilterChain(final HttpSecurity http,
-            final UserDetailsService userDetailsService) throws Exception {
+            final HandlerMappingIntrospector introspector, final UserDetailsService userDetailsService)
+            throws Exception {
+        final MvcRequestMatcher.Builder mvc;
+
+        mvc = new MvcRequestMatcher.Builder(introspector);
         http
             // Whitelist access
-            .authorizeHttpRequests(new WhitelistRequestCustomizer(Arrays.asList("/actuator/**", "/login/**")))
+            .authorizeHttpRequests(c -> c
+                .requestMatchers(mvc.pattern("/actuator/**"), mvc.pattern("/login/**"), mvc.pattern("/favicon.ico"),
+                    mvc.pattern("/error/**"))
+                .permitAll())
+            // Authenticate all others
+            .authorizeHttpRequests(c -> c.anyRequest()
+                .authenticated())
+            .httpBasic(Customizer.withDefaults())
+            // CSRF and CORS
             .csrf(CsrfConfigurer::disable)
-            .cors(cors -> {})
+            .cors(Customizer.withDefaults())
+            // Authentication error handling
+            .exceptionHandling(handler -> handler.authenticationEntryPoint(new ErrorResponseAuthenticationEntryPoint()))
+            // Stateless
+            .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+            // Disable login and logout forms
             .formLogin(FormLoginConfigurer::disable)
-            .logout(LogoutConfigurer::disable)
-            .sessionManagement(t -> t.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-            // Activates HTTP Basic authentication
-            .httpBasic(t ->
-            // Return an error response on an auth failure
-            t.authenticationEntryPoint(new ErrorResponseAuthenticationEntryPoint()));
+            .logout(LogoutConfigurer::disable);
 
         http.userDetailsService(userDetailsService);
 
