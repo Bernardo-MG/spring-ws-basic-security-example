@@ -23,9 +23,7 @@
 									"});\r",
 									"\r",
 									"pm.test(\"The response contains the error properties\", () => {\r",
-									"    const responseJson = pm.response.json();\r",
-									"    pm.expect(responseJson.errors).to.have.lengthOf(1);\r",
-									"    pm.expect(responseJson.errors[0].message).to.eql('Unauthorized');\r",
+									"    pm.expect(pm.response.json().message).to.eql('Unauthorized');\r",
 									"});"
 								],
 								"type": "text/javascript",
@@ -83,9 +81,7 @@
 									"});\r",
 									"\r",
 									"pm.test(\"The response contains the error properties\", () => {\r",
-									"    const responseJson = pm.response.json();\r",
-									"    pm.expect(responseJson.errors).to.have.lengthOf(1);\r",
-									"    pm.expect(responseJson.errors[0].message).to.eql('Unauthorized');\r",
+									"    pm.expect(pm.response.json().message).to.eql('Unauthorized');\r",
 									"});"
 								],
 								"type": "text/javascript",
@@ -227,9 +223,7 @@
 									"});\r",
 									"\r",
 									"pm.test(\"The response contains the error properties\", () => {\r",
-									"    const responseJson = pm.response.json();\r",
-									"    pm.expect(responseJson.errors).to.have.lengthOf(1);\r",
-									"    pm.expect(responseJson.errors[0].message).to.eql('Unauthorized');\r",
+									"    pm.expect(pm.response.json().message).to.eql('Unauthorized');\r",
 									"});"
 								],
 								"type": "text/javascript",
