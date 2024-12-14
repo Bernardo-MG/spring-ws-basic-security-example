@@ -18,6 +18,7 @@
 # Log files #
 /*.log
 /*.log.*
+/logs/**
 
 # Output folders #
 /test-output/
@@ -47,6 +48,10 @@ local.properties
 # IntelliJ Idea files #
 .idea
 *.iml
+
+# Visual Studio #
+.vscode/
+.factorypath
 
 # Windows files #
 Thumbs.db

@@ -1,0 +1,22 @@
+###############################################################################
+#                             APPLICATION CONFIG                              #
+###############################################################################
+
+# Development options
+# debug: true
+
+spring:
+  # AOP
+  aop:
+    proxy-target-class: false
+
+# Actuator
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,auditevents
+  endpoint:
+    health:
+      show-details: always
+      sensitive: false
