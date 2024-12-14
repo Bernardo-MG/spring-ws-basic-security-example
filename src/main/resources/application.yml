@@ -10,9 +10,13 @@ spring:
   aop:
     proxy-target-class: false
 
-# Audit
+# Actuator
 management:
   endpoints:
     web:
       exposure:
-        include: auditevents
+        include: health,auditevents
+  endpoint:
+    health:
+      show-details: always
+      sensitive: false
